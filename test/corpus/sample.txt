@@ -1,3 +1,7 @@
+================================================================================
+Example, Simple
+================================================================================
+
 /home/selecaoone/repositories/jumpy/engine/build/src/CMakeFiles/jumpy_engine.dir/lib/world.cpp.o:     file format elf64-x86-64
 
 
@@ -13,3 +17,6 @@ _ZN6engine13entityManager13EntityManager12getNextIndexEv():
    7:	8b 31                                                 	mov    esi,DWORD PTR [rcx]
    9:	8d 56 01                                              	lea    edx,[rsi+0x1]
 
+--------------------------------------------------------------------------------
+
+(source)
