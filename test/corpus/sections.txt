@@ -1,0 +1,14 @@
+================================================================================
+Disassembly Section
+================================================================================
+
+Disassembly of section .text:
+Disassembly of section .text._ZNSt6vectorIN6engine6entity6EntityESaIS2_EE17_M_realloc_insertIJRKS2_EEEvN9__gnu_cxx17__normal_iteratorIPS2_S4_EEDpOT_:
+
+--------------------------------------------------------------------------------
+
+(source
+  (disassembly_section
+    (section_name))
+  (disassembly_section
+    (section_name)))

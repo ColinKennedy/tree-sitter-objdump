@@ -1,0 +1,15 @@
+/home/selecaoone/repositories/jumpy/engine/build/src/CMakeFiles/jumpy_engine.dir/lib/world.cpp.o:     file format elf64-x86-64
+
+
+0000000000000000 <engine::world::World::createEntity()> (File Offset: 0x70):
+_ZN6engine5world5World12createEntityEv():
+/home/selecaoone/repositories/jumpy/engine/src/lib/world.cpp:14
+   0:	48 89 f8                                              	mov    rax,rdi
+_ZNKSt15__uniq_ptr_implIN6engine13entityManager13EntityManagerESt14default_deleteIS2_EE6_M_ptrEv():
+/opt/rh/devtoolset-9/root/usr/include/c++/9/bits/unique_ptr.h:154
+   3:	48 8b 4f 40                                           	mov    rcx,QWORD PTR [rdi+0x40]
+_ZN6engine13entityManager13EntityManager12getNextIndexEv():
+/home/selecaoone/repositories/jumpy/engine/src/include/jumpy_engine/entityManager.h:15
+   7:	8b 31                                                 	mov    esi,DWORD PTR [rcx]
+   9:	8d 56 01                                              	lea    edx,[rsi+0x1]
+
