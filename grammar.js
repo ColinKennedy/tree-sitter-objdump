@@ -54,7 +54,7 @@ module.exports = grammar(
                 $.address,
                 ":",
                 $.machine_code_bytes,
-                optional($.instruction),
+                optional(seq(/   +/, $.instruction)),
             ),
 
             label_line: $ => seq(alias($._label_identifier, $.label), ":"),
@@ -62,7 +62,7 @@ module.exports = grammar(
             hexadecimal: $ => /0[xh][0-9a-fA-F]+/,
             byte: $ => /[0-9a-fA-F]{2}/,
             machine_code_bytes: $ => repeat1($.byte),
-            instruction: $ => /\w\w\w[^\n]*/,
+            instruction: $ => /[^\n]+/,
 
             address: $ => /[0-9a-fA-F]+/,
 

@@ -87,6 +87,16 @@
     }
   },
   {
+    "type": "identifier",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "instruction",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "label_line",
     "named": true,
     "fields": {},
@@ -247,14 +257,6 @@
   },
   {
     "type": "hexadecimal",
-    "named": true
-  },
-  {
-    "type": "identifier",
-    "named": true
-  },
-  {
-    "type": "instruction",
     "named": true
   },
   {

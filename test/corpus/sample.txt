@@ -93,3 +93,20 @@ Multi-Hexadecimal Instruction Line
       (byte)
       (byte))
     (instruction)))
+
+
+================================================================================
+Instruction With Only Two Letters Bug-Fix
+================================================================================
+
+23:	74 12                                                 	je     37 <engine::world::World::initialize()+0x25> (File Offset: 0xa7)
+
+--------------------------------------------------------------------------------
+
+(source
+  (offset_line
+    (address)
+    (machine_code_bytes
+      (byte)
+      (byte))
+    (instruction)))

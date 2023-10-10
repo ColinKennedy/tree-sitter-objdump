@@ -170,8 +170,17 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "instruction"
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "   +"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "instruction"
+                }
+              ]
             },
             {
               "type": "BLANK"
@@ -215,7 +224,7 @@
     },
     "instruction": {
       "type": "PATTERN",
-      "value": "\\w\\w\\w[^\\n]*"
+      "value": "[^\\n]+"
     },
     "address": {
       "type": "PATTERN",
