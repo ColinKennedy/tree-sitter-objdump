@@ -19,4 +19,43 @@ _ZN6engine13entityManager13EntityManager12getNextIndexEv():
 
 --------------------------------------------------------------------------------
 
-(source)
+(source
+  (header
+    (file_path)
+    (identifier))
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (file_offset
+      (hexadecimal)))
+  (label_line
+    (label))
+  (source_location
+    (file_path)
+    (integer))
+  (offset_line
+    (address)
+    (machine_code_bytes)
+    (instruction))
+  (label_line
+    (label))
+  (source_location
+    (file_path)
+    (integer))
+  (offset_line
+    (address)
+    (machine_code_bytes)
+    (instruction))
+  (label_line
+    (label))
+  (source_location
+    (file_path)
+    (integer))
+  (offset_line
+    (address)
+    (machine_code_bytes)
+    (instruction))
+  (offset_line
+    (address)
+    (machine_code_bytes)
+    (instruction)))

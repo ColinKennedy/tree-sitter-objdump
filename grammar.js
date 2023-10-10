@@ -24,24 +24,62 @@ module.exports = grammar(
 
             // TODO: Consider adding explicit terminator lines for each line
             _line: $ => choice(
+                $.disassembly_section_label,
+                $.source_location,
+                $.offset_line,
+                $.label_line,
                 $.disassembly_section,
                 $.header,
             ),
 
-            header: $ => seq($.file_path, ":", "file format", $.identifier),
+            header: $ => seq($.file_path, ":", "file", "format", $.identifier),
 
             disassembly_section: $ => seq(
+                alias($.address, $.section_address),
+                "<",
+                alias(/[^>]+/, $.identifier),
+                ">",
+                optional($._file_offset),
+                ":",
+            ),
+
+            label_line: $ => seq(alias($._label_identifier, $.label), ":"),
+
+            source_location: $ => seq(
+                $.file_path,
+                ":",
+                $.integer,  // The file's line number
+            ),
+
+            offset_line: $ => seq(
+                $.address,
+                ":",
+                $.machine_code_bytes,
+                optional($.instruction),
+            ),
+
+            machine_code_bytes: $ => repeat1(/[0-9a-fA-F]{2}/),
+            instruction: $ => /[^\n]+/,
+
+            address: $ => /[0-9a-fA-F]+/,
+
+            _file_offset: $ => seq("(", $.file_offset, ")"),
+            file_offset: $ => seq("File", "Offset:", $.hexadecimal),
+
+            hexadecimal: $ => /0[xh][0-9a-fA-F]+/,
+
+            disassembly_section_label: $ => seq(
                 "Disassembly of section ",
                 $.section_name,
                 ":",
             ),
 
-            // TODO: Support windows paths, later
-            file_path: $ => choice(
-                /[A-Za-z]:\\(?:[^\\]+\\)*[^\\]+/,
-                /\/(?:[^/]+\/)*[^/]+/
-            ),
+            integer: $ => /\d+/,
 
+            // TODO: Support windows paths, later. Also make sure Linux paths work
+            file_path: $ => /\/[\/\w\-\.\+]+/,
+
+            _label_identifier: $ => /[A-Za-z.@_][A-Za-z0-9.@_$-\(\)]*/,  // Test this, later
             identifier: $ => /[^\n]+/,
 
             section_name: $ => /\.[^:]+/,

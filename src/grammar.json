@@ -13,6 +13,22 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "disassembly_section_label"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "source_location"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "offset_line"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "label_line"
+        },
+        {
+          "type": "SYMBOL",
           "name": "disassembly_section"
         },
         {
@@ -34,7 +50,11 @@
         },
         {
           "type": "STRING",
-          "value": "file format"
+          "value": "file"
+        },
+        {
+          "type": "STRING",
+          "value": "format"
         },
         {
           "type": "SYMBOL",
@@ -43,6 +63,170 @@
       ]
     },
     "disassembly_section": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "address"
+          },
+          "named": true,
+          "value": "section_address"
+        },
+        {
+          "type": "STRING",
+          "value": "<"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[^>]+"
+          },
+          "named": true,
+          "value": "identifier"
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_file_offset"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        }
+      ]
+    },
+    "label_line": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_label_identifier"
+          },
+          "named": true,
+          "value": "label"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        }
+      ]
+    },
+    "source_location": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "file_path"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "integer"
+        }
+      ]
+    },
+    "offset_line": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "address"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "machine_code_bytes"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "instruction"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "machine_code_bytes": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "PATTERN",
+        "value": "[0-9a-fA-F]{2}"
+      }
+    },
+    "instruction": {
+      "type": "PATTERN",
+      "value": "[^\\n]+"
+    },
+    "address": {
+      "type": "PATTERN",
+      "value": "[0-9a-fA-F]+"
+    },
+    "_file_offset": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "file_offset"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "file_offset": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "File"
+        },
+        {
+          "type": "STRING",
+          "value": "Offset:"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "hexadecimal"
+        }
+      ]
+    },
+    "hexadecimal": {
+      "type": "PATTERN",
+      "value": "0[xh][0-9a-fA-F]+"
+    },
+    "disassembly_section_label": {
       "type": "SEQ",
       "members": [
         {
@@ -59,18 +243,17 @@
         }
       ]
     },
+    "integer": {
+      "type": "PATTERN",
+      "value": "\\d+"
+    },
     "file_path": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "PATTERN",
-          "value": "[A-Za-z]:\\\\(?:[^\\\\]+\\\\)*[^\\\\]+"
-        },
-        {
-          "type": "PATTERN",
-          "value": "\\/(?:[^/]+\\/)*[^/]+"
-        }
-      ]
+      "type": "PATTERN",
+      "value": "\\/[\\/\\w\\-\\.\\+]+"
+    },
+    "_label_identifier": {
+      "type": "PATTERN",
+      "value": "[A-Za-z.@_][A-Za-z0-9.@_$-\\(\\)]*"
     },
     "identifier": {
       "type": "PATTERN",

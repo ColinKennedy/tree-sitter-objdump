@@ -7,4 +7,10 @@ Normal Header
 
 --------------------------------------------------------------------------------
 
-(source)
+(source
+  (header
+    (file_path)
+    (identifier))
+  (header
+    (file_path)
+    (identifier)))

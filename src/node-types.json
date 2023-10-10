@@ -4,6 +4,29 @@
     "named": true,
     "fields": {},
     "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "file_offset",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "section_address",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "disassembly_section_label",
+    "named": true,
+    "fields": {},
+    "children": {
       "multiple": false,
       "required": true,
       "types": [
@@ -15,9 +38,19 @@
     }
   },
   {
-    "type": "file_path",
+    "type": "file_offset",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "hexadecimal",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "header",
@@ -39,6 +72,59 @@
     }
   },
   {
+    "type": "identifier",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "instruction",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "label_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "machine_code_bytes",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "offset_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "address",
+          "named": true
+        },
+        {
+          "type": "instruction",
+          "named": true
+        },
+        {
+          "type": "machine_code_bytes",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "source",
     "named": true,
     "fields": {},
@@ -51,14 +137,65 @@
           "named": true
         },
         {
+          "type": "disassembly_section_label",
+          "named": true
+        },
+        {
           "type": "header",
+          "named": true
+        },
+        {
+          "type": "label_line",
+          "named": true
+        },
+        {
+          "type": "offset_line",
+          "named": true
+        },
+        {
+          "type": "source_location",
           "named": true
         }
       ]
     }
   },
   {
+    "type": "source_location",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "file_path",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
     "type": ":",
+    "named": false
+  },
+  {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": ">",
     "named": false
   },
   {
@@ -66,11 +203,43 @@
     "named": false
   },
   {
-    "type": "file format",
+    "type": "File",
     "named": false
   },
   {
-    "type": "identifier",
+    "type": "Offset:",
+    "named": false
+  },
+  {
+    "type": "address",
+    "named": true
+  },
+  {
+    "type": "file",
+    "named": false
+  },
+  {
+    "type": "file_path",
+    "named": true
+  },
+  {
+    "type": "format",
+    "named": false
+  },
+  {
+    "type": "hexadecimal",
+    "named": true
+  },
+  {
+    "type": "integer",
+    "named": true
+  },
+  {
+    "type": "label",
+    "named": true
+  },
+  {
+    "type": "section_address",
     "named": true
   },
   {
