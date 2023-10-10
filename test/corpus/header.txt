@@ -1,0 +1,16 @@
+================================================================================
+Normal Header
+================================================================================
+
+/home/foo/things/blah_engine.dir/lib/world.cpp.o:     file format elf64-x86-64
+/home/foo/things/blah_engine.dir////lib/world.cpp.o:     file format elf64-x86-64
+
+--------------------------------------------------------------------------------
+
+(source
+  (header
+    (file_path)
+    (identifier))
+  (header
+    (file_path)
+    (identifier)))

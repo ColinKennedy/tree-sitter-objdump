@@ -1,0 +1,130 @@
+================================================================================
+C++ Code Location Permutations
+================================================================================
+
+0000000000000000 <engine::world::World::createEntity()> (File Offset: 0x70):
+  23:	74 12                                                 	je     37 <engine::world::World::operator+()+0x25> (File Offset: 0xa7)
+  23:	74 12                                                 	je     37 <foo+0x80>
+  23:	74 12                                                 	je     37 <foo::operator()>
+  23:	74 12                                                 	je     37 <foo::operator+>
+  23:	74 12                                                 	je     37 <foo::operator+()>
+  23:	74 12                                                 	je     37 <foo::operator+()+0x90>
+  23:	74 12                                                 	je     37 <foo+0x80> (File Offset: 0xa7)
+  23:	74 12                                                 	je     37 <foo::operator()> (File Offset: 0xa7)
+  23:	74 12                                                 	je     37 <foo::operator+> (File Offset: 0xa7)
+  23:	74 12                                                 	je     37 <foo::operator+()> (File Offset: 0xa7)
+  23:	74 12                                                 	je     37 <foo::operator+()+0x90> (File Offset: 0xa7)
+
+--------------------------------------------------------------------------------
+
+(source
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (file_offset
+      (hexadecimal))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte))
+      (instruction)
+      (code_location
+        (identifier)
+        (hexadecimal))
+      (file_offset
+        (hexadecimal)))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte))
+      (instruction)
+      (code_location
+        (identifier)
+        (hexadecimal)))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte))
+      (instruction)
+      (code_location
+        (identifier)))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte))
+      (instruction)
+      (code_location
+        (identifier)))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte))
+      (instruction)
+      (code_location
+        (identifier)))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte))
+      (instruction)
+      (code_location
+        (identifier)
+        (hexadecimal)))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte))
+      (instruction)
+      (code_location
+        (identifier)
+        (hexadecimal))
+      (file_offset
+        (hexadecimal)))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte))
+      (instruction)
+      (code_location
+        (identifier))
+      (file_offset
+        (hexadecimal)))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte))
+      (instruction)
+      (code_location
+        (identifier))
+      (file_offset
+        (hexadecimal)))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte))
+      (instruction)
+      (code_location
+        (identifier))
+      (file_offset
+        (hexadecimal)))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte))
+      (instruction)
+      (code_location
+        (identifier)
+        (hexadecimal))
+      (file_offset
+        (hexadecimal)))))

@@ -1,0 +1,5 @@
+/home/foo/things/blah_engine.dir/lib/world.cpp.o:     file format elf64-x86-64
+#  <- string
+/home/foo/things/blah_engine.dir////lib/world.cpp.o:     file format elf64-x86-64
+#  <- string
+#                                                                    ^ namespace

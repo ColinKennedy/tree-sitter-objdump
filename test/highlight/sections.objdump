@@ -1,0 +1,34 @@
+Disassembly of section .text:
+# <- text.title
+
+Disassembly of section .text._ZNSt6vectorIN6engine6entity6EntityESaIS2_EE17_M_realloc_insertIJRKS2_EEEvN9__gnu_cxx17__normal_iteratorIPS2_S4_EEDpOT_:
+# <- text.title
+#                      ^ namespace
+#                                                                        ^ namespace
+
+0000000000000000 <engine::world::World::createEntity()> (File Offset: 0x70):
+# <- number
+#                 ^ namespace
+#                                                        ^ field
+#                                                                     ^ number
+
+00000000000000a2 <engine::world::World::addSystem(std::unique_ptr<engine::systems::System, std::default_delete<engine::systems::System> >)> (File Offset: 0x112):
+# <- number
+#                 ^ namespace
+
+/home/selecaoone/repositories/jumpy/engine/src/lib/world.cpp:48 (discriminator 3)
+#  <- string
+#                                                            ^ number
+#                                                                ^ field
+#                                                                              ^ number
+
+1f0:	48 83 c3 08                                           	add    rbx,0x8
+#  <- number
+#       ^ constant
+#          ^ constant
+#             ^ constant
+
+23:	74 12                                                 	je     37 <engine::world::World::initialize()+0x25> (File Offset: 0xa7)
+#  <- number
+#       ^ constant
+#                                                                                                            ^ punctuation.special

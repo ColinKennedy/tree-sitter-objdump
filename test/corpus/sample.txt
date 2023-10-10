@@ -1,0 +1,216 @@
+================================================================================
+Example, Simple
+================================================================================
+
+/home/selecaoone/repositories/jumpy/engine/build/src/CMakeFiles/jumpy_engine.dir/lib/world.cpp.o:     file format elf64-x86-64
+
+
+0000000000000000 <engine::world::World::createEntity()> (File Offset: 0x70):
+_ZN6engine5world5World12createEntityEv():
+/home/selecaoone/repositories/jumpy/engine/src/lib/world.cpp:14
+   0:	48 89 f8                                              	mov    rax,rdi
+_ZNKSt15__uniq_ptr_implIN6engine13entityManager13EntityManagerESt14default_deleteIS2_EE6_M_ptrEv():
+/opt/rh/devtoolset-9/root/usr/include/c++/9/bits/unique_ptr.h:154
+   3:	48 8b 4f 40                                           	mov    rcx,QWORD PTR [rdi+0x40]
+_ZN6engine13entityManager13EntityManager12getNextIndexEv():
+/home/selecaoone/repositories/jumpy/engine/src/include/jumpy_engine/entityManager.h:15
+   7:	8b 31                                                 	mov    esi,DWORD PTR [rcx]
+   9:	8d 56 01                                              	lea    edx,[rsi+0x1]
+
+--------------------------------------------------------------------------------
+
+(source
+  (header
+    (file_path)
+    (identifier))
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (file_offset
+      (hexadecimal))
+    (label_line
+      (label))
+    (source_location
+      (file_path)
+      (integer))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte)
+        (byte))
+      (instruction))
+    (label_line
+      (label))
+    (source_location
+      (file_path)
+      (integer))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte)
+        (byte)
+        (byte))
+      (instruction))
+    (label_line
+      (label))
+    (source_location
+      (file_path)
+      (integer))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte))
+      (instruction))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte)
+        (byte))
+      (instruction))))
+
+
+================================================================================
+Multi-Hexadecimal Instruction Line
+================================================================================
+
+0000000000000000 <engine::world::World::createEntity()> (File Offset: 0x70):
+  70:	f2 0f 11 44 24 08                                     	movsd  QWORD PTR [rsp+0x8],xmm0
+
+--------------------------------------------------------------------------------
+
+(source
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (file_offset
+      (hexadecimal))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte)
+        (byte)
+        (byte)
+        (byte)
+        (byte))
+      (instruction))))
+
+
+================================================================================
+Instruction With Only Two Letters Bug-Fix
+================================================================================
+
+0000000000000000 <engine::world::World::createEntity()> (File Offset: 0x70):
+  23:	74 12                                                 	je     37 <engine::world::World::initialize()+0x25> (File Offset: 0xa7)
+
+--------------------------------------------------------------------------------
+
+(source
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (file_offset
+      (hexadecimal))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte))
+      (instruction)
+      (code_location
+        (identifier)
+        (hexadecimal))
+      (file_offset
+        (hexadecimal)))))
+
+
+================================================================================
+Concise Whitespace Between Bytes And Instructions
+================================================================================
+
+0000000000000000 <engine::world::World::createEntity()> (File Offset: 0x70):
+  40031a:	69 62 36 34 2f 6c 64 	imul   esp,DWORD PTR [rdx+0x36],0x646c2f34
+
+--------------------------------------------------------------------------------
+
+(source
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (file_offset
+      (hexadecimal))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte)
+        (byte)
+        (byte)
+        (byte)
+        (byte)
+        (byte))
+      (instruction))))
+
+
+================================================================================
+Templated C++ Code Location
+================================================================================
+
+
+0000000000000000 <engine::world::World::createEntity()> (File Offset: 0x70):
+  409f80:	ff 25 ba 11 24 00    	jmp    QWORD PTR [rip+0x2411ba]        # 64b140 <QMessageBox::information(QWidget*, QString const&, QString const&, QFlags<QMessageBox::StandardButton>, QMessageBox::StandardButton)@Qt_5>
+
+--------------------------------------------------------------------------------
+
+(source
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (file_offset
+      (hexadecimal))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte)
+        (byte)
+        (byte)
+        (byte)
+        (byte))
+      (instruction)
+      (comment
+        (address)
+        (code_location
+          (identifier))))))
+
+
+================================================================================
+Instruction With + Sign
+================================================================================
+
+0000000000000000 <engine::world::World::createEntity()> (File Offset: 0x70):
+  23:	74 12                                                 	je     37 <engine::world::World::operator+()+0x25> (File Offset: 0xa7)
+
+--------------------------------------------------------------------------------
+
+(source
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (file_offset
+      (hexadecimal))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte))
+      (instruction)
+      (code_location
+        (identifier)
+        (hexadecimal))
+      (file_offset
+        (hexadecimal)))))
