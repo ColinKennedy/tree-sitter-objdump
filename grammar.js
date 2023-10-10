@@ -47,7 +47,10 @@ module.exports = grammar(
                 $.file_path,
                 ":",
                 $.integer,  // The file's line number
+                optional($.discriminator),
             ),
+
+            discriminator: $ => seq("(", "discriminator", $.integer, ")"),
 
             offset_line: $ => seq(
                 $.address,

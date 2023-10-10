@@ -34,3 +34,25 @@ Disassembly Section
     (identifier)
     (file_offset
       (hexadecimal))))
+
+
+================================================================================
+Discriminator Source Location
+================================================================================
+
+
+/home/selecaoone/repositories/jumpy/engine/src/lib/world.cpp:48 (discriminator 3)
+1f0:	48 83 c3 08                                           	add    rbx,0x8
+
+--------------------------------------------------------------------------------
+
+(source
+  (source_location
+    (file_path)
+    (integer)
+    (discriminator
+      (integer)))
+  (offset_line
+    (address)
+    (machine_code_bytes)
+    (instruction)))

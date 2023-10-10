@@ -38,6 +38,21 @@
     }
   },
   {
+    "type": "discriminator",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "integer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "file_offset",
     "named": true,
     "fields": {},
@@ -168,6 +183,10 @@
       "required": true,
       "types": [
         {
+          "type": "discriminator",
+          "named": true
+        },
+        {
           "type": "file_path",
           "named": true
         },
@@ -205,6 +224,10 @@
   {
     "type": "address",
     "named": true
+  },
+  {
+    "type": "discriminator",
+    "named": false
   },
   {
     "type": "file",
