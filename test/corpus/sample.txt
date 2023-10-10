@@ -35,7 +35,10 @@ _ZN6engine13entityManager13EntityManager12getNextIndexEv():
     (integer))
   (offset_line
     (address)
-    (machine_code_bytes)
+    (machine_code_bytes
+      (byte)
+      (byte)
+      (byte))
     (instruction))
   (label_line
     (label))
@@ -44,7 +47,11 @@ _ZN6engine13entityManager13EntityManager12getNextIndexEv():
     (integer))
   (offset_line
     (address)
-    (machine_code_bytes)
+    (machine_code_bytes
+      (byte)
+      (byte)
+      (byte)
+      (byte))
     (instruction))
   (label_line
     (label))
@@ -53,9 +60,36 @@ _ZN6engine13entityManager13EntityManager12getNextIndexEv():
     (integer))
   (offset_line
     (address)
-    (machine_code_bytes)
+    (machine_code_bytes
+      (byte)
+      (byte))
     (instruction))
   (offset_line
     (address)
-    (machine_code_bytes)
+    (machine_code_bytes
+      (byte)
+      (byte)
+      (byte))
+    (instruction)))
+
+
+================================================================================
+Multi-Hexadecimal Instruction Line
+================================================================================
+
+
+70:	f2 0f 11 44 24 08                                     	movsd  QWORD PTR [rsp+0x8],xmm0
+
+--------------------------------------------------------------------------------
+
+(source
+  (offset_line
+    (address)
+    (machine_code_bytes
+      (byte)
+      (byte)
+      (byte)
+      (byte)
+      (byte)
+      (byte))
     (instruction)))

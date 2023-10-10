@@ -41,8 +41,6 @@ module.exports = grammar(
                 ":",
             ),
 
-            label_line: $ => seq(alias($._label_identifier, $.label), ":"),
-
             source_location: $ => seq(
                 $.file_path,
                 ":",
@@ -59,15 +57,17 @@ module.exports = grammar(
                 optional($.instruction),
             ),
 
-            machine_code_bytes: $ => repeat1(/[0-9a-fA-F]{2}/),
-            instruction: $ => /[^\n]+/,
+            label_line: $ => seq(alias($._label_identifier, $.label), ":"),
+
+            hexadecimal: $ => /0[xh][0-9a-fA-F]+/,
+            byte: $ => /[0-9a-fA-F]{2}/,
+            machine_code_bytes: $ => repeat1($.byte),
+            instruction: $ => /\w\w\w[^\n]*/,
 
             address: $ => /[0-9a-fA-F]+/,
 
             _file_offset: $ => seq("(", $.file_offset, ")"),
             file_offset: $ => seq("File", "Offset:", $.hexadecimal),
-
-            hexadecimal: $ => /0[xh][0-9a-fA-F]+/,
 
             disassembly_section_label: $ => seq(
                 "Disassembly of section ",

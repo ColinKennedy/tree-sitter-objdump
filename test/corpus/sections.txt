@@ -54,5 +54,9 @@ Discriminator Source Location
       (integer)))
   (offset_line
     (address)
-    (machine_code_bytes)
+    (machine_code_bytes
+      (byte)
+      (byte)
+      (byte)
+      (byte))
     (instruction)))

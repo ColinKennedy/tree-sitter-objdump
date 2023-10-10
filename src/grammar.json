@@ -101,24 +101,6 @@
         }
       ]
     },
-    "label_line": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_label_identifier"
-          },
-          "named": true,
-          "value": "label"
-        },
-        {
-          "type": "STRING",
-          "value": ":"
-        }
-      ]
-    },
     "source_location": {
       "type": "SEQ",
       "members": [
@@ -198,16 +180,42 @@
         }
       ]
     },
+    "label_line": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_label_identifier"
+          },
+          "named": true,
+          "value": "label"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        }
+      ]
+    },
+    "hexadecimal": {
+      "type": "PATTERN",
+      "value": "0[xh][0-9a-fA-F]+"
+    },
+    "byte": {
+      "type": "PATTERN",
+      "value": "[0-9a-fA-F]{2}"
+    },
     "machine_code_bytes": {
       "type": "REPEAT1",
       "content": {
-        "type": "PATTERN",
-        "value": "[0-9a-fA-F]{2}"
+        "type": "SYMBOL",
+        "name": "byte"
       }
     },
     "instruction": {
       "type": "PATTERN",
-      "value": "[^\\n]+"
+      "value": "\\w\\w\\w[^\\n]*"
     },
     "address": {
       "type": "PATTERN",
@@ -246,10 +254,6 @@
           "name": "hexadecimal"
         }
       ]
-    },
-    "hexadecimal": {
-      "type": "PATTERN",
-      "value": "0[xh][0-9a-fA-F]+"
     },
     "disassembly_section_label": {
       "type": "SEQ",

@@ -87,16 +87,6 @@
     }
   },
   {
-    "type": "identifier",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "instruction",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "label_line",
     "named": true,
     "fields": {},
@@ -114,7 +104,17 @@
   {
     "type": "machine_code_bytes",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "byte",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "offset_line",
@@ -226,6 +226,10 @@
     "named": true
   },
   {
+    "type": "byte",
+    "named": true
+  },
+  {
     "type": "discriminator",
     "named": false
   },
@@ -243,6 +247,14 @@
   },
   {
     "type": "hexadecimal",
+    "named": true
+  },
+  {
+    "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "instruction",
     "named": true
   },
   {
