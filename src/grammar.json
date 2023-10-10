@@ -75,21 +75,13 @@
           "value": "section_address"
         },
         {
-          "type": "STRING",
-          "value": "<"
-        },
-        {
           "type": "ALIAS",
           "content": {
             "type": "PATTERN",
-            "value": "[^>]+"
+            "value": "<.+>"
           },
           "named": true,
           "value": "identifier"
-        },
-        {
-          "type": "STRING",
-          "value": ">"
         },
         {
           "type": "CHOICE",

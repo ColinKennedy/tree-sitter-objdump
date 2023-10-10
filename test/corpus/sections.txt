@@ -19,10 +19,16 @@ Disassembly Section
 ================================================================================
 
 0000000000000000 <engine::world::World::createEntity()> (File Offset: 0x70):
+00000000000000a2 <engine::world::World::addSystem(std::unique_ptr<engine::systems::System, std::default_delete<engine::systems::System> >)> (File Offset: 0x112):
 
 --------------------------------------------------------------------------------
 
 (source
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (file_offset
+      (hexadecimal)))
   (disassembly_section
     (section_address)
     (identifier)

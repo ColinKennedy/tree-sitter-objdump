@@ -36,9 +36,7 @@ module.exports = grammar(
 
             disassembly_section: $ => seq(
                 alias($.address, $.section_address),
-                "<",
-                alias(/[^>]+/, $.identifier),
-                ">",
+                alias(/<.+>/, $.identifier),
                 optional($._file_offset),
                 ":",
             ),
