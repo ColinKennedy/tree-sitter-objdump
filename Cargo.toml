@@ -4,7 +4,7 @@ description = "objdump grammar for the tree-sitter parsing library"
 version = "1.0.0"
 keywords = ["incremental", "parsing", "objdump"]
 categories = ["parsing", "text-editors"]
-repository = "https://github.com/tree-sitter/tree-sitter-objdump"
+repository = "https://github.com/ColinKennedy/tree-sitter-objdump"
 edition = "2018"
 license = "MIT"
 
