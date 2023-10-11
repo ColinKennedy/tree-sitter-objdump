@@ -77,6 +77,8 @@ File Offset
       (byte)
       (byte))
     (instruction)
-    (identifier)
+    (code_location
+      (identifier)
+      (hexadecimal))
     (file_offset
       (hexadecimal))))

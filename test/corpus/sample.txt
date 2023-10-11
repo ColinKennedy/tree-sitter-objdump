@@ -110,6 +110,8 @@ Instruction With Only Two Letters Bug-Fix
       (byte)
       (byte))
     (instruction)
-    (identifier)
+    (code_location
+      (identifier)
+      (hexadecimal))
     (file_offset
       (hexadecimal))))

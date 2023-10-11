@@ -55,8 +55,18 @@ module.exports = grammar(
                 ":",
                 $.machine_code_bytes,
                 optional(seq(/   +/, $.instruction)),
-                optional(alias(/<.+>/, $.identifier)),
+                optional($.code_location),
                 optional($._file_offset),
+            ),
+
+            code_location: $ => choice(
+                seq(
+                    "<",
+                    alias(/[^>+]+/, $.identifier),
+                    "+",
+                    $.hexadecimal,
+                    ">",
+                )
             ),
 
             label_line: $ => seq(alias($._label_identifier, $.label), ":"),
