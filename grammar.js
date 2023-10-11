@@ -55,8 +55,7 @@ module.exports = grammar(
                 ":",
                 $.machine_code_bytes,
                 optional(seq(/   +/, $.instruction)),
-                optional($.code_location),
-                optional($._file_offset),
+                optional(seq($.code_location, $._file_offset)),
             ),
 
             code_location: $ => choice(
