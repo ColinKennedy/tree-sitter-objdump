@@ -103,3 +103,25 @@ Abnormal Instruction Ending
     (code_location
       (identifier)
       (hexadecimal))))
+
+
+================================================================================
+Instruction, Location, And Offset
+================================================================================
+
+23:	74 12                                                 	je     37 <engine::world::World::initialize()+0x25> (File Offset: 0xa7)
+
+--------------------------------------------------------------------------------
+
+(source
+  (offset_line
+    (address)
+    (machine_code_bytes
+      (byte)
+      (byte))
+    (instruction)
+    (code_location
+      (identifier)
+      (hexadecimal))
+    (file_offset
+      (hexadecimal))))

@@ -14,16 +14,13 @@ _ZN6engine5world5World12createEntityEv():
    # <- number
    #    ^ constant
    #       ^ constant
-   #          ^ constant
 
 _ZNKSt15__uniq_ptr_implIN6engine13entityManager13EntityManagerESt14default_deleteIS2_EE6_M_ptrEv():
 #  <- label
 #                                                                                  ^ label
 
-23:	74 12                                                 	je     37 <engine::world::World::initialize()+0x25> (File Offset: 0xa7)
-#  <- number
-#       ^ constant
-#          ^ constant
-#                                                               ^ ttt
-#                                                                                                                    ^ ttt
-#                                                                                                                                 ^ ttt
+   23:	74 12                                                 	je     37 <engine::world::World::initialize()+0x25> (File Offset: 0xa7)
+   #  <- number
+   #    ^ constant
+   #                                                            ^ text
+   #                                                                                                                    ^ field
