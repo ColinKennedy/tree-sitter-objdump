@@ -25,6 +25,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "comment"
+        },
+        {
+          "type": "SYMBOL",
           "name": "label_line"
         },
         {
@@ -34,10 +38,6 @@
         {
           "type": "SYMBOL",
           "name": "header"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "comment"
         }
       ]
     },
@@ -178,7 +178,7 @@
               "members": [
                 {
                   "type": "PATTERN",
-                  "value": "    +"
+                  "value": "   +"
                 },
                 {
                   "type": "SYMBOL",

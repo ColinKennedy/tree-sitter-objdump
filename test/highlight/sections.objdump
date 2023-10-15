@@ -27,11 +27,8 @@ Disassembly of section .text._ZNSt6vectorIN6engine6entity6EntityESaIS2_EE17_M_re
 #       ^ constant
 #          ^ constant
 #             ^ constant
-#                ^ constant
 
 23:	74 12                                                 	je     37 <engine::world::World::initialize()+0x25> (File Offset: 0xa7)
 #  <- number
-#       ^ number
-#          ^ number
-#                                                                                                            ^ azzzzzzzz
-#                                                                                                             ^ number
+#       ^ constant
+#                                                                                                            ^ punctuation.special
