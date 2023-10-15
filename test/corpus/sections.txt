@@ -82,3 +82,24 @@ File Offset
       (hexadecimal))
     (file_offset
       (hexadecimal))))
+
+
+================================================================================
+Abnormal Instruction Ending
+================================================================================
+
+4c:	48 39 eb                                              	cmp    rbx,rbp # asdfasdfasdf <thing+0x40>
+
+--------------------------------------------------------------------------------
+
+(source
+  (offset_line
+    (address)
+    (machine_code_bytes
+      (byte)
+      (byte)
+      (byte))
+    (instruction)
+    (code_location
+      (identifier)
+      (hexadecimal))))

@@ -191,17 +191,20 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "code_location"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "_file_offset"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "code_location"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_file_offset"
             },
             {
               "type": "BLANK"
@@ -230,12 +233,25 @@
               "value": "identifier"
             },
             {
-              "type": "STRING",
-              "value": "+"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "hexadecimal"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "+"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "hexadecimal"
+                    }
+                  ]
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
             },
             {
               "type": "STRING",
