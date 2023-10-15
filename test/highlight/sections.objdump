@@ -3,12 +3,13 @@ Disassembly of section .text:
 
 Disassembly of section .text._ZNSt6vectorIN6engine6entity6EntityESaIS2_EE17_M_realloc_insertIJRKS2_EEEvN9__gnu_cxx17__normal_iteratorIPS2_S4_EEDpOT_:
 # <- text.title
-#                      ^ asfasdf
-#                                                                ^ asfasdf
+#                      ^ namespace
+#                                                                        ^ namespace
 
 0000000000000000 <engine::world::World::createEntity()> (File Offset: 0x70):
-#  <- asfasdf
-#                 ^ asfasdf
+#  number
+#                ^ punctuation.special
+#                 ^ thing
 #                                                        ^ asfasdf
 #                                                                     ^ asfasdf
 
@@ -30,3 +31,10 @@ Disassembly of section .text._ZNSt6vectorIN6engine6entity6EntityESaIS2_EE17_M_re
 #          ^ asfasdf
 #             ^ asfasdf
 #                ^ asfasdf
+
+23:	74 12                                                 	je     37 <engine::world::World::initialize()+0x25> (File Offset: 0xa7)
+#  <- number
+#       ^ number
+#          ^ number
+#                                                                                                            ^ azzzzzzzz
+#                                                                                                             ^ number
