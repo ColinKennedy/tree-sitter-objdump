@@ -138,3 +138,27 @@ Concise Whitespace Between Bytes And Instructions
       (byte)
       (byte))
     (instruction)))
+
+
+================================================================================
+Templated C++ Code Location
+================================================================================
+
+
+  409f80:	ff 25 ba 11 24 00    	jmp    QWORD PTR [rip+0x2411ba]        # 64b140 <QMessageBox::information(QWidget*, QString const&, QString const&, QFlags<QMessageBox::StandardButton>, QMessageBox::StandardButton)@Qt_5>
+
+--------------------------------------------------------------------------------
+
+(source
+  (offset_line
+    (address)
+    (machine_code_bytes
+      (byte)
+      (byte)
+      (byte)
+      (byte)
+      (byte)
+      (byte))
+    (instruction)
+    (code_location
+      (identifier))))
