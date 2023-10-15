@@ -19,6 +19,11 @@ module.exports = grammar(
     {
         name: "objdump",
 
+        extras: $ => [
+            $.comment,
+            /[\s\f\uFEFF\u2060\u200B]|\\\r?\n/
+        ],
+
         rules: {
             source: $ => repeat($._line),
 
@@ -27,6 +32,7 @@ module.exports = grammar(
                 $.disassembly_section_label,
                 $.source_location,
                 $.offset_line,
+                $.comment,
                 $.label_line,
                 $.disassembly_section,
                 $.header,
@@ -37,7 +43,7 @@ module.exports = grammar(
             disassembly_section: $ => seq(
                 alias($.address, $.section_address),
                 alias(/<.+>/, $.identifier),
-                optional($._file_offset),
+                optional($.file_offset),
                 ":",
             ),
 
@@ -56,7 +62,7 @@ module.exports = grammar(
                 $.machine_code_bytes,
                 optional(seq(/   +/, $.instruction)),
                 optional($.code_location),
-                optional($._file_offset),
+                optional($.file_offset),
             ),
 
             code_location: $ => choice(
@@ -77,8 +83,7 @@ module.exports = grammar(
 
             address: $ => /[0-9a-fA-F]+/,
 
-            _file_offset: $ => seq("(", $.file_offset, ")"),
-            file_offset: $ => seq("File", "Offset:", $.hexadecimal),
+            file_offset: $ => seq("(", "File", "Offset:", $.hexadecimal, ")"),
 
             disassembly_section_label: $ => seq(
                 "Disassembly of section ",
@@ -95,7 +100,11 @@ module.exports = grammar(
             identifier: $ => /[^\n]+/,
 
             section_name: $ => /\.[^:]+/,
-            // section_name: $ => /<[^>]*>/,
+
+            comment: $ => token(
+                // Comments in USD can be ``# foo`` or ``// bar``. ``//`` is rare
+                choice(seq("#", /.*/), seq("//", /.*/))
+            ),
         }
     }
 )

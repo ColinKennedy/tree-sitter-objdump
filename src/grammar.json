@@ -34,6 +34,10 @@
         {
           "type": "SYMBOL",
           "name": "header"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "comment"
         }
       ]
     },
@@ -88,7 +92,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_file_offset"
+              "name": "file_offset"
             },
             {
               "type": "BLANK"
@@ -174,7 +178,7 @@
               "members": [
                 {
                   "type": "PATTERN",
-                  "value": "   +"
+                  "value": "    +"
                 },
                 {
                   "type": "SYMBOL",
@@ -204,7 +208,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_file_offset"
+              "name": "file_offset"
             },
             {
               "type": "BLANK"
@@ -302,26 +306,13 @@
       "type": "PATTERN",
       "value": "[0-9a-fA-F]+"
     },
-    "_file_offset": {
+    "file_offset": {
       "type": "SEQ",
       "members": [
         {
           "type": "STRING",
           "value": "("
         },
-        {
-          "type": "SYMBOL",
-          "name": "file_offset"
-        },
-        {
-          "type": "STRING",
-          "value": ")"
-        }
-      ]
-    },
-    "file_offset": {
-      "type": "SEQ",
-      "members": [
         {
           "type": "STRING",
           "value": "File"
@@ -333,6 +324,10 @@
         {
           "type": "SYMBOL",
           "name": "hexadecimal"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
         }
       ]
     },
@@ -372,12 +367,50 @@
     "section_name": {
       "type": "PATTERN",
       "value": "\\.[^:]+"
+    },
+    "comment": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "#"
+              },
+              {
+                "type": "PATTERN",
+                "value": ".*"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "//"
+              },
+              {
+                "type": "PATTERN",
+                "value": ".*"
+              }
+            ]
+          }
+        ]
+      }
     }
   },
   "extras": [
     {
+      "type": "SYMBOL",
+      "name": "comment"
+    },
+    {
       "type": "PATTERN",
-      "value": "\\s"
+      "value": "[\\s\\f\\uFEFF\\u2060\\u200B]|\\\\\\r?\\n"
     }
   ],
   "conflicts": [],

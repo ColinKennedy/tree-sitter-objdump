@@ -7,30 +7,27 @@ Disassembly of section .text._ZNSt6vectorIN6engine6entity6EntityESaIS2_EE17_M_re
 #                                                                        ^ namespace
 
 0000000000000000 <engine::world::World::createEntity()> (File Offset: 0x70):
-#  number
-#                ^ punctuation.special
-#                 ^ thing
-#                                                        ^ asfasdf
-#                                                                     ^ asfasdf
+# <- number
+#                 ^ namespace
+#                                                        ^ field
+#                                                                     ^ number
 
 00000000000000a2 <engine::world::World::addSystem(std::unique_ptr<engine::systems::System, std::default_delete<engine::systems::System> >)> (File Offset: 0x112):
-#  <- asfasdf
-#                 ^ asfasdf
-#                                                                                                                                            ^ asfasdf
-#                                                                                                                                                         ^ asfasdf
+# <- number
+#                 ^ namespace
 
 /home/selecaoone/repositories/jumpy/engine/src/lib/world.cpp:48 (discriminator 3)
-#  <- asfasdf
-#                                                            ^ asfasdf
-#                                                                ^ asfasdf
-#                                                                              ^ asfasdf
+#  <- string
+#                                                            ^ number
+#                                                                ^ field
+#                                                                              ^ number
 
 1f0:	48 83 c3 08                                           	add    rbx,0x8
-#  <- asfasdf
-#       ^ asfasdf
-#          ^ asfasdf
-#             ^ asfasdf
-#                ^ asfasdf
+#  <- number
+#       ^ constant
+#          ^ constant
+#             ^ constant
+#                ^ constant
 
 23:	74 12                                                 	je     37 <engine::world::World::initialize()+0x25> (File Offset: 0xa7)
 #  <- number

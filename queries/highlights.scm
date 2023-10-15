@@ -5,6 +5,7 @@
 (section_address) @number
 
 (disassembly_section_label) @text.title
+[(file_offset) (discriminator)] @field
 (file_path) @string
 (identifier) @namespace
 (instruction) @text

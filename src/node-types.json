@@ -175,6 +175,10 @@
       "required": false,
       "types": [
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "disassembly_section",
           "named": true
         },
@@ -266,6 +270,10 @@
   },
   {
     "type": "byte",
+    "named": true
+  },
+  {
+    "type": "comment",
     "named": true
   },
   {
