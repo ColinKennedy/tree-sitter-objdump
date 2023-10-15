@@ -60,7 +60,7 @@ module.exports = grammar(
                 $.address,
                 ":",
                 $.machine_code_bytes,
-                optional(seq(/   +/, $.instruction)),
+                optional(seq(/ \s+/, $.instruction)),
                 optional($.code_location),
                 optional($.file_offset),
             ),

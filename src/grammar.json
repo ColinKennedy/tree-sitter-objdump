@@ -178,7 +178,7 @@
               "members": [
                 {
                   "type": "PATTERN",
-                  "value": "   +"
+                  "value": " \\s+"
                 },
                 {
                   "type": "SYMBOL",

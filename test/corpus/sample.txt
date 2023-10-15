@@ -115,3 +115,26 @@ Instruction With Only Two Letters Bug-Fix
       (hexadecimal))
     (file_offset
       (hexadecimal))))
+
+
+================================================================================
+Concise Whitespace Between Bytes And Instructions
+================================================================================
+
+
+  40031a:	69 62 36 34 2f 6c 64 	imul   esp,DWORD PTR [rdx+0x36],0x646c2f34
+
+--------------------------------------------------------------------------------
+
+(source
+  (offset_line
+    (address)
+    (machine_code_bytes
+      (byte)
+      (byte)
+      (byte)
+      (byte)
+      (byte)
+      (byte)
+      (byte))
+    (instruction)))
