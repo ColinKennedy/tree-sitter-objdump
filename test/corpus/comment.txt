@@ -42,8 +42,10 @@ Comment With Address Information
       (byte)
       (byte))
     (instruction)
-    (comment
+    (objdump_comment
+      (address)
       (code_location
-        (identifier))
+        (identifier)
+        (hexadecimal))
       (file_offset
         (hexadecimal)))))
