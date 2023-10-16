@@ -69,8 +69,8 @@ module.exports = grammar(
                 seq(
                     "<",
                     alias(/[^>+]+/, $.identifier),
-                    optional(seq("+", $.hexadecimal))
-                    ,">"
+                    optional(seq("+", $.hexadecimal)),
+                    ">",
                 ),
             ),
 
