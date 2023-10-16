@@ -309,6 +309,10 @@
     "named": true
   },
   {
+    "type": "comment",
+    "named": true
+  },
+  {
     "type": "discriminator",
     "named": false
   },

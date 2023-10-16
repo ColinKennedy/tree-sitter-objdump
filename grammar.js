@@ -75,56 +75,6 @@ module.exports = grammar(
             _comment_with_label: $ => seq("#", $.address, $.code_location, optional($.file_offset)),
             _comment_with_address: $ => seq("#", $.hexadecimal),
 
-            // Working?
-            // code_location: $ => prec.left(4,
-            //     seq(
-            //         "<",
-            //         alias($._code_location, $.identifier),
-            //         optional(seq("+", $.hexadecimal)),
-            //         ">",
-            //     ),
-            // ),
-
-            // _code_location: $ => prec.left(
-            //     2,
-            //     repeat1(seq(/[^>+]+/, optional($._code_location), optional(">"))),
-            // ),
-
-            // Getting closer but still doesn't work
-            // _code_location: $ => prec.left(
-            //     2,
-            //     repeat1(seq(/[^>]+/, optional($._code_location), optional(">"))),
-            // ),
-
-            // code_location: $ => prec.left(4,
-            //     seq(
-            //         "<",
-            //         alias($._code_location, $.identifier),
-            //         optional(seq("+", $.hexadecimal)),
-            //         ">",
-            //     ),
-            // ),
-            //
-            // _code_location: $ => prec.left(
-            //     2,
-            //     repeat1(choice(/[^<>]+/, $.code_location)),
-            // ),
-
-            // // WORKS!?
-            // code_location: $ => alias($.__code_location, $.identifier),
-            //
-            // _code_location: $ => prec.left(
-            //     2,
-            //     repeat1(choice(/[^<>]+/, $.__code_location)),
-            // ),
-            //
-            // __code_location: $ => seq(
-            //     "<",
-            //     $._code_location,
-            //     optional(seq("+", $.hexadecimal)),
-            //     ">",
-            // ),
-
             code_location: $ => seq(
                 "<",
                 alias($._code_location, $.identifier),
@@ -133,21 +83,6 @@ module.exports = grammar(
             ),
             _code_location: $ => repeat1(choice(/[^<>+]+/, $.__code_location)),
             __code_location: $ => seq("<", $._code_location, ">"),
-
-            // Works moderately well
-            // _code_location: $ => seq(
-            //     /[^<+]+/,
-            //     optional(seq("<", optional($._code_location), ">")),
-            // ),
-
-            // Not sure if works
-            // _code_location: $ => seq(
-            //     optional("<"),
-            //     /[^<]*/,
-            //     $._code_location,
-            //     /[^>]*/,
-            //     optional(">"),
-            // ),
 
             label_line: $ => seq(alias($._label_identifier, $.label), ":"),
 
