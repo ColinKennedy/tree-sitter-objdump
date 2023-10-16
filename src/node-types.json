@@ -19,29 +19,6 @@
     }
   },
   {
-    "type": "comment",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "code_location",
-          "named": true
-        },
-        {
-          "type": "file_offset",
-          "named": true
-        },
-        {
-          "type": "hexadecimal",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "disassembly_section",
     "named": true,
     "fields": {},
@@ -164,6 +141,33 @@
     }
   },
   {
+    "type": "objdump_comment",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "address",
+          "named": true
+        },
+        {
+          "type": "code_location",
+          "named": true
+        },
+        {
+          "type": "file_offset",
+          "named": true
+        },
+        {
+          "type": "hexadecimal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "offset_line",
     "named": true,
     "fields": {},
@@ -180,10 +184,6 @@
           "named": true
         },
         {
-          "type": "comment",
-          "named": true
-        },
-        {
           "type": "file_offset",
           "named": true
         },
@@ -193,6 +193,10 @@
         },
         {
           "type": "machine_code_bytes",
+          "named": true
+        },
+        {
+          "type": "objdump_comment",
           "named": true
         }
       ]

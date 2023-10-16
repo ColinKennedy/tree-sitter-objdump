@@ -181,22 +181,8 @@
                   "name": "instruction"
                 },
                 {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "_comment_with_address"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "_comment_with_label"
-                      }
-                    ]
-                  },
-                  "named": true,
-                  "value": "comment"
+                  "type": "SYMBOL",
+                  "name": "objdump_comment"
                 }
               ]
             },
@@ -254,6 +240,19 @@
         }
       ]
     },
+    "objdump_comment": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_comment_with_address"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_comment_with_label"
+        }
+      ]
+    },
     "_comment_with_label": {
       "type": "SEQ",
       "members": [
@@ -262,8 +261,8 @@
           "value": "#"
         },
         {
-          "type": "PATTERN",
-          "value": "\\w+"
+          "type": "SYMBOL",
+          "name": "address"
         },
         {
           "type": "SYMBOL",

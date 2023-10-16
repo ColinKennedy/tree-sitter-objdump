@@ -88,7 +88,7 @@ File Offset
 Abnormal Instruction Ending
 ================================================================================
 
-4c:	48 39 eb                                              	cmp    rbx,rbp # asdfasdfasdf <thing+0x40>
+4c:	48 39 eb                                              	cmp    rbx,rbp # ffffffffa0400635 <thing+0x40>
 
 --------------------------------------------------------------------------------
 
@@ -100,7 +100,8 @@ Abnormal Instruction Ending
       (byte)
       (byte))
     (instruction)
-    (comment
+    (objdump_comment
+      (address)
       (code_location
         (identifier)
         (hexadecimal)))))

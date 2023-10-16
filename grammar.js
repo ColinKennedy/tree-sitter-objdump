@@ -61,14 +61,7 @@ module.exports = grammar(
                 ":",
                 $.machine_code_bytes,
                 choice(
-                    seq(
-                        / \s+/,
-                        $.instruction,
-                        alias(
-                            choice($._comment_with_address, $._comment_with_label),
-                            $.comment
-                        )
-                    ),
+                    seq(/ \s+/, $.instruction, $.objdump_comment),
                     seq(
                         optional(seq(/ \s+/, $.instruction)),
                         optional($.code_location),
@@ -77,7 +70,9 @@ module.exports = grammar(
                 ),
             ),
 
-            _comment_with_label: $ => seq("#", /\w+/, $.code_location, optional($.file_offset)),
+            objdump_comment: $ => choice($._comment_with_address, $._comment_with_label),
+
+            _comment_with_label: $ => seq("#", $.address, $.code_location, optional($.file_offset)),
             _comment_with_address: $ => seq("#", $.hexadecimal),
 
             // Working?

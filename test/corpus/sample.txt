@@ -160,7 +160,8 @@ Templated C++ Code Location
       (byte)
       (byte))
     (instruction)
-    (comment
+      (objdump_comment
+        (address)
       (code_location
         (identifier)))))
 
