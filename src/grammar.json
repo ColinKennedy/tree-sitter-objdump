@@ -25,10 +25,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "comment"
-        },
-        {
-          "type": "SYMBOL",
           "name": "label_line"
         },
         {
@@ -183,25 +179,95 @@
                 {
                   "type": "SYMBOL",
                   "name": "instruction"
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "_comment_with_address"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "_comment_with_label"
+                      }
+                    ]
+                  },
+                  "named": true,
+                  "value": "comment"
                 }
               ]
             },
             {
-              "type": "BLANK"
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "PATTERN",
+                          "value": " \\s+"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "instruction"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "code_location"
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "file_offset"
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                }
+              ]
             }
           ]
+        }
+      ]
+    },
+    "_comment_with_label": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "#"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "code_location"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "PATTERN",
+          "value": "\\w+"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "code_location"
         },
         {
           "type": "CHOICE",
@@ -214,6 +280,19 @@
               "type": "BLANK"
             }
           ]
+        }
+      ]
+    },
+    "_comment_with_address": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "#"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "hexadecimal"
         }
       ]
     },
@@ -328,7 +407,7 @@
     },
     "instruction": {
       "type": "PATTERN",
-      "value": "[^\\n<]+"
+      "value": "[^\\n<#]+"
     },
     "address": {
       "type": "PATTERN",
@@ -395,50 +474,12 @@
     "section_name": {
       "type": "PATTERN",
       "value": "\\.[^:]+"
-    },
-    "comment": {
-      "type": "TOKEN",
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "#"
-              },
-              {
-                "type": "PATTERN",
-                "value": ".*"
-              }
-            ]
-          },
-          {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "//"
-              },
-              {
-                "type": "PATTERN",
-                "value": ".*"
-              }
-            ]
-          }
-        ]
-      }
     }
   },
   "extras": [
     {
-      "type": "SYMBOL",
-      "name": "comment"
-    },
-    {
       "type": "PATTERN",
-      "value": "[\\s\\f\\uFEFF\\u2060\\u200B]|\\\\\\r?\\n"
+      "value": "\\s"
     }
   ],
   "conflicts": [],

@@ -160,5 +160,28 @@ Templated C++ Code Location
       (byte)
       (byte))
     (instruction)
+    (comment
+      (code_location
+        (identifier)))))
+
+
+================================================================================
+Instruction With + Sign
+================================================================================
+
+23:	74 12                                                 	je     37 <engine::world::World::operator+()+0x25> (File Offset: 0xa7)
+
+--------------------------------------------------------------------------------
+
+(source
+  (offset_line
+    (address)
+    (machine_code_bytes
+      (byte)
+      (byte))
+    (instruction)
     (code_location
-      (identifier))))
+      (identifier)
+      (hexadecimal))
+    (file_offset
+      (hexadecimal))))

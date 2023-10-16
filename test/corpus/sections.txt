@@ -100,9 +100,10 @@ Abnormal Instruction Ending
       (byte)
       (byte))
     (instruction)
-    (code_location
-      (identifier)
-      (hexadecimal))))
+    (comment
+      (code_location
+        (identifier)
+        (hexadecimal)))))
 
 
 ================================================================================

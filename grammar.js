@@ -19,10 +19,10 @@ module.exports = grammar(
     {
         name: "objdump",
 
-        extras: $ => [
-            $.comment,
-            /[\s\f\uFEFF\u2060\u200B]|\\\r?\n/
-        ],
+        // extras: $ => [
+        //     $.comment,
+        //     /[\s\f\uFEFF\u2060\u200B]|\\\r?\n/
+        // ],
 
         rules: {
             source: $ => repeat($._line),
@@ -32,7 +32,7 @@ module.exports = grammar(
                 $.disassembly_section_label,
                 $.source_location,
                 $.offset_line,
-                $.comment,
+                // $.comment,
                 $.label_line,
                 $.disassembly_section,
                 $.header,
@@ -60,10 +60,25 @@ module.exports = grammar(
                 $.address,
                 ":",
                 $.machine_code_bytes,
-                optional(seq(/ \s+/, $.instruction)),
-                optional($.code_location),
-                optional($.file_offset),
+                choice(
+                    seq(
+                        / \s+/,
+                        $.instruction,
+                        alias(
+                            choice($._comment_with_address, $._comment_with_label),
+                            $.comment
+                        )
+                    ),
+                    seq(
+                        optional(seq(/ \s+/, $.instruction)),
+                        optional($.code_location),
+                        optional($.file_offset),
+                    )
+                ),
             ),
+
+            _comment_with_label: $ => seq("#", /\w+/, $.code_location, optional($.file_offset)),
+            _comment_with_address: $ => seq("#", $.hexadecimal),
 
             // Working?
             // code_location: $ => prec.left(4,
@@ -144,7 +159,7 @@ module.exports = grammar(
             hexadecimal: $ => /0[xh][0-9a-fA-F]+/,
             byte: $ => /[0-9a-fA-F]{2}/,
             machine_code_bytes: $ => repeat1($.byte),
-            instruction: $ => /[^\n<]+/,
+            instruction: $ => /[^\n<#]+/,
 
             address: $ => /[0-9a-fA-F]+/,
 
@@ -166,10 +181,7 @@ module.exports = grammar(
 
             section_name: $ => /\.[^:]+/,
 
-            comment: $ => token(
-                // Comments in USD can be ``# foo`` or ``// bar``. ``//`` is rare
-                choice(seq("#", /.*/), seq("//", /.*/))
-            ),
+            // comment: $ => token(seq("#", /.*/)),  // Objdump writes comments with #
         }
     }
 )
