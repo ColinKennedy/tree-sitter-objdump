@@ -283,12 +283,16 @@ _ZNKSt15__uniq_ptr_implIN6engine13entityManager13EntityManagerESt14default_delet
 Empty Assembly Instruction
 ================================================================================
 
-00000000004004ed <main>:
-  4004ff:	00
+Disassembly of section .interp:
+
+0000000000400238 <.interp>:
+  4004ff:	00 
 
 --------------------------------------------------------------------------------
 
 (source
+  (disassembly_section_label
+    (section_name))
   (disassembly_section
     (section_address)
     (identifier)

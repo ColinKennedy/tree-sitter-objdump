@@ -56,11 +56,11 @@ module.exports = grammar(
                 $.address,
                 ":",
                 $.machine_code_bytes,
-                optional(
-                    choice(
-                        $._instruction_and_comment,
-                        $._instruction_and_location,
-                    ),
+                choice(
+                    /\n/,
+                    optional(
+                        choice($._instruction_and_comment, $._instruction_and_location),
+                    )
                 ),
             ),
 
