@@ -210,7 +210,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "objdump_comment"
+          "name": "comment"
         }
       ]
     },
@@ -251,7 +251,7 @@
         }
       ]
     },
-    "objdump_comment": {
+    "comment": {
       "type": "CHOICE",
       "members": [
         {

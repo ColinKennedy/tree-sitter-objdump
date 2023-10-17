@@ -67,7 +67,7 @@ module.exports = grammar(
             _instruction_and_comment: $ => seq(
                 / \s+/,
                 $.instruction,
-                $.objdump_comment
+                $.comment
             ),
             _instruction_and_location: $ => seq(
                 / \s+/,
@@ -76,7 +76,7 @@ module.exports = grammar(
                 optional($.file_offset),
             ),
 
-            objdump_comment: $ => choice($._comment_with_address, $._comment_with_label),
+            comment: $ => choice($._comment_with_address, $._comment_with_label),
 
             _comment_with_label: $ => seq("#", $.address, $.code_location, optional($.file_offset)),
             _comment_with_address: $ => seq("#", $.hexadecimal),

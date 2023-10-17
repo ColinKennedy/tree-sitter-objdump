@@ -182,7 +182,7 @@ Templated C++ Code Location
         (byte)
         (byte))
       (instruction)
-      (objdump_comment
+      (comment
         (address)
         (code_location
           (identifier))))))

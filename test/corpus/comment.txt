@@ -22,7 +22,7 @@ Inline Comment
         (byte)
         (byte))
       (instruction)
-      (objdump_comment
+      (comment
         (hexadecimal)))))
 
 
@@ -50,7 +50,7 @@ Comment With Address Information
         (byte)
         (byte))
       (instruction)
-      (objdump_comment
+      (comment
         (address)
         (code_location
           (identifier)
