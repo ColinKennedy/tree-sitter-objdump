@@ -17,18 +17,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "source_location"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "offset_line"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "label_line"
-        },
-        {
-          "type": "SYMBOL",
           "name": "disassembly_section"
         },
         {
@@ -98,6 +86,26 @@
         {
           "type": "STRING",
           "value": ":"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "offset_line"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "source_location"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "label_line"
+              }
+            ]
+          }
         }
       ]
     },
@@ -170,71 +178,66 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "PATTERN",
-                  "value": " \\s+"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "instruction"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "objdump_comment"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "_instruction_and_comment"
             },
             {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SEQ",
-                      "members": [
-                        {
-                          "type": "PATTERN",
-                          "value": " \\s+"
-                        },
-                        {
-                          "type": "SYMBOL",
-                          "name": "instruction"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
-                },
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "code_location"
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
-                },
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "file_offset"
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "_instruction_and_location"
+            }
+          ]
+        }
+      ]
+    },
+    "_instruction_and_comment": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": " \\s+"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "instruction"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "objdump_comment"
+        }
+      ]
+    },
+    "_instruction_and_location": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": " \\s+"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "instruction"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "code_location"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "file_offset"
+            },
+            {
+              "type": "BLANK"
             }
           ]
         }
@@ -473,35 +476,19 @@
     "section_name": {
       "type": "PATTERN",
       "value": "\\.[^:]+"
-    },
-    "comment": {
-      "type": "TOKEN",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "#"
-          },
-          {
-            "type": "PATTERN",
-            "value": ".*"
-          }
-        ]
-      }
     }
   },
   "extras": [
     {
-      "type": "SYMBOL",
-      "name": "comment"
-    },
-    {
       "type": "PATTERN",
-      "value": "[\\s\\f\\uFEFF\\u2060\\u200B]|\\\\\\r?\\n"
+      "value": "\\s"
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    [
+      "disassembly_section"
+    ]
+  ],
   "precedences": [],
   "externals": [],
   "inline": [],

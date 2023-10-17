@@ -19,10 +19,9 @@ module.exports = grammar(
     {
         name: "objdump",
 
-        // extras: $ => [
-        //     $.comment,
-        //     /[\s\f\uFEFF\u2060\u200B]|\\\r?\n/
-        // ],
+        conflicts: $=> [
+            [$.disassembly_section],
+        ],
 
         rules: {
             source: $ => repeat($._line),
@@ -30,10 +29,6 @@ module.exports = grammar(
             // TODO: Consider adding explicit terminator lines for each line
             _line: $ => choice(
                 $.disassembly_section_label,
-                $.source_location,
-                $.offset_line,
-                // $.comment,
-                $.label_line,
                 $.disassembly_section,
                 $.header,
             ),
@@ -45,6 +40,13 @@ module.exports = grammar(
                 alias(/<.+>/, $.identifier),
                 optional($.file_offset),
                 ":",
+                repeat1(
+                    choice(
+                        $.offset_line,
+                        $.source_location,
+                        $.label_line,
+                    )
+                ),
             ),
 
             source_location: $ => seq(
@@ -61,13 +63,21 @@ module.exports = grammar(
                 ":",
                 $.machine_code_bytes,
                 choice(
-                    seq(/ \s+/, $.instruction, $.objdump_comment),
-                    seq(
-                        optional(seq(/ \s+/, $.instruction)),
-                        optional($.code_location),
-                        optional($.file_offset),
-                    )
+                    $._instruction_and_comment,
+                    $._instruction_and_location,
                 ),
+            ),
+
+            _instruction_and_comment: $ => seq(
+                / \s+/,
+                $.instruction,
+                $.objdump_comment
+            ),
+            _instruction_and_location: $ => seq(
+                / \s+/,
+                $.instruction,
+                optional($.code_location),
+                optional($.file_offset),
             ),
 
             objdump_comment: $ => choice($._comment_with_address, $._comment_with_label),
@@ -110,8 +120,6 @@ module.exports = grammar(
             identifier: $ => /[^\n]+/,
 
             section_name: $ => /\.[^:]+/,
-
-            // comment: $ => token(seq("#", /.*/)),  // Objdump writes comments with #
         }
     }
 )

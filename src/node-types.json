@@ -35,7 +35,19 @@
           "named": true
         },
         {
+          "type": "label_line",
+          "named": true
+        },
+        {
+          "type": "offset_line",
+          "named": true
+        },
+        {
           "type": "section_address",
+          "named": true
+        },
+        {
+          "type": "source_location",
           "named": true
         }
       ]
@@ -221,18 +233,6 @@
         {
           "type": "header",
           "named": true
-        },
-        {
-          "type": "label_line",
-          "named": true
-        },
-        {
-          "type": "offset_line",
-          "named": true
-        },
-        {
-          "type": "source_location",
-          "named": true
         }
       ]
     }
@@ -306,10 +306,6 @@
   },
   {
     "type": "byte",
-    "named": true
-  },
-  {
-    "type": "comment",
     "named": true
   },
   {
