@@ -193,7 +193,7 @@ Instruction With + Sign
 ================================================================================
 
 0000000000000000 <engine::world::World::createEntity()> (File Offset: 0x70):
-  23:	74 12                                                 	je     37 <engine::world::World::operator()+0x25> (File Offset: 0xa7)
+  23:	74 12                                                 	je     37 <engine::world::World::operator+()+0x25> (File Offset: 0xa7)
 
 --------------------------------------------------------------------------------
 

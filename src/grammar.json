@@ -178,12 +178,20 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "_instruction_and_comment"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_instruction_and_comment"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_instruction_and_location"
+                }
+              ]
             },
             {
-              "type": "SYMBOL",
-              "name": "_instruction_and_location"
+              "type": "BLANK"
             }
           ]
         }
@@ -348,7 +356,7 @@
         "members": [
           {
             "type": "PATTERN",
-            "value": "[^<>+]+"
+            "value": "([^<>+]|\\+[^0])+"
           },
           {
             "type": "SYMBOL",

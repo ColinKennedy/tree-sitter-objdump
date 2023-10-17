@@ -40,13 +40,7 @@ module.exports = grammar(
                 alias(/<.+>/, $.identifier),
                 optional($.file_offset),
                 ":",
-                repeat1(
-                    choice(
-                        $.offset_line,
-                        $.source_location,
-                        $.label_line,
-                    )
-                ),
+                repeat1(choice($.offset_line, $.source_location, $.label_line)),
             ),
 
             source_location: $ => seq(
@@ -62,9 +56,11 @@ module.exports = grammar(
                 $.address,
                 ":",
                 $.machine_code_bytes,
-                choice(
-                    $._instruction_and_comment,
-                    $._instruction_and_location,
+                optional(
+                    choice(
+                        $._instruction_and_comment,
+                        $._instruction_and_location,
+                    ),
                 ),
             ),
 
@@ -91,7 +87,7 @@ module.exports = grammar(
                 optional(seq("+", $.hexadecimal)),
                 ">",
             ),
-            _code_location: $ => repeat1(choice(/[^<>+]+/, $.__code_location)),
+            _code_location: $ => repeat1(choice(/([^<>+]|\+[^0])+/, $.__code_location)),
             __code_location: $ => seq("<", $._code_location, ">"),
 
             label_line: $ => seq(alias($._label_identifier, $.label), ":"),
