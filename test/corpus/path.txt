@@ -1,0 +1,64 @@
+================================================================================
+Relative Path Bug Fix
+================================================================================
+
+0000000000400530 <a()>:
+_Z1av():
+./a.cpp:1
+  400530:	55                   	push   rbp
+
+--------------------------------------------------------------------------------
+
+(source
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (label_line
+      (label))
+    (source_location
+      (file_path)
+      (integer))
+    (offset_line
+      (address)
+      (machine_code_bytes
+        (byte))
+      (instruction))))
+
+
+================================================================================
+Implicit Relative Path Bug Fix
+================================================================================
+
+00000000004005c0 <f1()>:
+_Z2f1v():
+Output/split-dwarf-test.cc:1
+  4005c0:	55                   	push   rbp
+  4005c1:	48 89 e5             	mov    rbp,rsp
+Output/split-dwarf-test.cc:2
+
+--------------------------------------------------------------------------------
+
+(source
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (label_line
+      (label))
+    (source_location
+      (file_path)
+      (integer))
+    (offset_line
+      (address)
+      (machine_code_bytes
+        (byte))
+      (instruction))
+    (offset_line
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte)
+        (byte))
+      (instruction))
+    (source_location
+      (file_path)
+      (integer))))

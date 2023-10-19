@@ -112,7 +112,7 @@ module.exports = grammar(
             integer: $ => /\d+/,
 
             // TODO: Support windows paths, later. Also make sure Linux paths work
-            file_path: $ => /\/[\/\w\-\.\+]+/,
+            file_path: $ => /[\/\w\-\.\+]+/,
 
             _label_identifier: $ => /[A-Za-z.@_][A-Za-z0-9.@_$-\(\)]*/,  // Test this, later
             identifier: $ => /[^\n]+/,

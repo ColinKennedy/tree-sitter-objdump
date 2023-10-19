@@ -447,7 +447,7 @@
     },
     "file_path": {
       "type": "PATTERN",
-      "value": "\\/[\\/\\w\\-\\.\\+]+"
+      "value": "[\\/\\w\\-\\.\\+]+"
     },
     "_label_identifier": {
       "type": "PATTERN",
