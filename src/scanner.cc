@@ -79,13 +79,6 @@ bool tree_sitter_objdump_external_scanner_scan(
             case '\n':
                 // The end of the token wasn't found so it cannot be a code identifier
                 return false;
-            case '>':
-                // We might have reached the end. Or it could be some kind of
-                // C++ operator>>() signature. Not sure which, just yet
-                //
-                lexer->mark_end(lexer);
-
-                continue;
             case '+':
                 // We might have reached the end. Or it could be some kind of
                 // C++ operator+() signature. Not sure which, just yet
@@ -96,7 +89,8 @@ bool tree_sitter_objdump_external_scanner_scan(
         }
 
         if (lexer->lookahead == '\n' || lexer->eof(lexer)) {
-            return false;
+            lexer->result_symbol = CODE_IDENTIFIER;
+            return true;
         }
     }
 
