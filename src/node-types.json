@@ -145,11 +145,6 @@
     }
   },
   {
-    "type": "identifier",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "label_line",
     "named": true,
     "fields": {},
@@ -326,6 +321,10 @@
   },
   {
     "type": "hexadecimal",
+    "named": true
+  },
+  {
+    "type": "identifier",
     "named": true
   },
   {

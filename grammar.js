@@ -23,6 +23,10 @@ module.exports = grammar(
             [$.disassembly_section],
         ],
 
+        externals: $ => [
+            $.code_identifier,
+        ],
+
         rules: {
             source: $ => repeat($._line),
 
@@ -83,12 +87,10 @@ module.exports = grammar(
 
             code_location: $ => seq(
                 "<",
-                alias($._code_location, $.identifier),
+                alias($.code_identifier, $.identifier),
                 optional(seq("+", $.hexadecimal)),
                 ">",
             ),
-            _code_location: $ => repeat1(choice(/([^<>+]|\+[^0])+/, $.__code_location)),
-            __code_location: $ => seq("<", $._code_location, ">"),
 
             label_line: $ => seq(alias($._label_identifier, $.label), ":"),
 
