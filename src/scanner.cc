@@ -30,10 +30,10 @@ bool tree_sitter_objdump_external_scanner_scan(
   const bool *valid_symbols
 )
 {
-    unsigned int offset_counter = 0;
+    unsigned int offset_counter = -1;  // Yes, it's okay that it's starting at -1
     bool possibly_in_next_token = false;
     char next_token_text[] = "(FileOffset:";
-    unsigned int const size = sizeof(next_token_text) / sizeof(char);
+    unsigned int const size = (sizeof(next_token_text) / sizeof(char) - 1);
 
     while (true)
     {
@@ -57,7 +57,7 @@ bool tree_sitter_objdump_external_scanner_scan(
         }
         else if (lexer->lookahead == next_token_text[offset_counter])
         {
-            if (offset_counter >= size)
+            if (offset_counter + 1 >= size)
             {
                 lexer->result_symbol = CODE_IDENTIFIER;
                 return true;
