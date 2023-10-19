@@ -280,7 +280,7 @@ _ZNKSt15__uniq_ptr_implIN6engine13entityManager13EntityManagerESt14default_delet
 
 
 ================================================================================
-Empty Assembly Instruction
+Empty Assembly Instruction, Single Sections
 ================================================================================
 
 Disassembly of section .interp:
@@ -300,3 +300,18 @@ Disassembly of section .interp:
       (address)
       (machine_code_bytes
         (byte)))))
+
+
+================================================================================
+Empty Assembly Instruction, Multiple Sections
+================================================================================
+
+  0000000000400540 <__do_global_dtors_aux>:
+    4005ab:	00 00 00 00 00 
+
+  00000000004005b0 <frame_dummy>:
+    4005b0:	55                   	push   rbp
+
+--------------------------------------------------------------------------------
+
+(source)
