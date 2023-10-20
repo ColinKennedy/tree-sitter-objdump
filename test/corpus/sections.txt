@@ -358,17 +358,6 @@ Disassembly of section .debug_line:
     (offset_line
       (address)
       (machine_code_bytes
-        (byte)
-        (byte)
-        (byte)
-        (byte)
-        (byte)
-        (byte)
-        (byte))
-      (instruction))
-    (offset_line
-      (address)
-      (machine_code_bytes
         (byte))
       (instruction))
     (offset_line
