@@ -1,0 +1,40 @@
+{
+    "author": "Colin Kennedy",
+    "bugs": {
+        "url": "https://github.com/ColinKennedy/tree-sitter-usd/issues"
+    },
+    "dependencies": {
+        "nan": "^2.12.1"
+    },
+    "description": "objdump grammar for tree-sitter",
+    "devDependencies": {
+        "tree-sitter-cli": "^0.20.8"
+    },
+    "homepage": "https://github.com/ColinKennedy/tree-sitter-objdump#readme",
+    "keywords": [
+        "tree-sitter",
+        "objdump",
+        "parsing",
+        "incremental"
+    ],
+    "main": "bindings/node",
+    "name": "tree-sitter-objdump",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ColinKennedy/tree-sitter-objdump.git"
+    },
+    "scripts": {
+        "test": "tree-sitter test",
+        "test-windows": "tree-sitter test"
+    },
+    "tree-sitter": [
+        {
+            "file-types": [
+                "objdump"
+            ],
+            "injection-regex": "objdump",
+            "scope": "source.objdump"
+        }
+    ],
+    "version": "1.0.0"
+}

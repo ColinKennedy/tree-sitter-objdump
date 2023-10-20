@@ -1,0 +1,399 @@
+================================================================================
+Disassembly Section Label
+================================================================================
+
+Disassembly of section .text:
+
+0000000000000000 <engine::world::World::createEntity()> (File Offset: 0x70):
+   0:	41 55                                                 	push   r13
+
+--------------------------------------------------------------------------------
+
+(source
+  (disassembly_section_label
+    (section_name))
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (file_offset
+      (hexadecimal))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte))
+      (instruction))))
+
+
+================================================================================
+Disassembly Section With Complex Labels
+================================================================================
+
+0000000000000000 <engine::world::World::createEntity()> (File Offset: 0x70):
+   0:	48 89 f8                                              	mov    rax,rdi
+00000000000000a2 <engine::world::World::addSystem(std::unique_ptr<engine::systems::System, std::default_delete<engine::systems::System> >)> (File Offset: 0x112):
+   0:	48 89 f8                                              	mov    rax,rdi
+
+--------------------------------------------------------------------------------
+
+(source
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (file_offset
+      (hexadecimal))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte)
+        (byte))
+      (instruction)))
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (file_offset
+      (hexadecimal))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte)
+        (byte))
+      (instruction))))
+
+
+================================================================================
+Disassembly @ Section
+================================================================================
+
+0000000000400d60 <localtime@@Base>:
+   0:	41 55                                                 	push   r13
+
+--------------------------------------------------------------------------------
+
+(source
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte))
+      (instruction))))
+
+
+================================================================================
+Discriminator Source Location
+================================================================================
+
+
+0000000000400d60 <blah>:
+/home/selecaoone/repositories/jumpy/engine/src/lib/world.cpp:48 (discriminator 3)
+  1f0:	48 83 c3 08                                           	add    rbx,0x8
+
+--------------------------------------------------------------------------------
+
+(source
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (source_location
+      (file_path)
+      (integer)
+      (discriminator
+        (integer)))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte)
+        (byte)
+        (byte))
+      (instruction))))
+
+
+================================================================================
+File Offset
+================================================================================
+
+0000000000400d60 <localtime@@Base>:
+  23:	74 12                                                 	je     37 <engine::world::World::initialize()+0x25> (File Offset: 0xa7)
+
+--------------------------------------------------------------------------------
+
+(source
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte))
+      (instruction)
+      (code_location
+        (identifier)
+        (hexadecimal))
+      (file_offset
+        (hexadecimal)))))
+
+
+================================================================================
+Abnormal Instruction Ending
+================================================================================
+
+0000000000000000 <engine::world::World::createEntity()> (File Offset: 0x70):
+  4c:	48 39 eb                                              	cmp    rbx,rbp # ffffffffa0400635 <thing+0x40>
+
+--------------------------------------------------------------------------------
+
+(source
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (file_offset
+      (hexadecimal))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte)
+        (byte))
+      (instruction)
+      (comment
+        (address)
+        (code_location
+          (identifier)
+          (hexadecimal))))))
+
+
+================================================================================
+Instruction, Location, And Offset
+================================================================================
+
+0000000000400d60 <thing_here>:
+  23:	74 12                                                 	je     37 <engine::world::World::initialize()+0x25> (File Offset: 0xa7)
+
+--------------------------------------------------------------------------------
+
+(source
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte))
+      (instruction)
+      (code_location
+        (identifier)
+        (hexadecimal))
+      (file_offset
+        (hexadecimal)))))
+
+
+================================================================================
+Disassembly Section And Code Simple
+================================================================================
+
+0000000000000000 <engine::world::World::createEntity()> (File Offset: 0x70):
+   0:	48 89 f8                                              	mov    rax,rdi
+   3:	48 8b 4f 40                                           	mov    rcx,QWORD PTR [rdi+0x40]
+
+--------------------------------------------------------------------------------
+
+(source
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (file_offset
+      (hexadecimal))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte)
+        (byte))
+      (instruction))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte)
+        (byte)
+        (byte))
+      (instruction))))
+
+
+================================================================================
+Disassembly Section And Code With Labels And Instructions
+================================================================================
+
+Disassembly of section .text:
+
+0000000000000000 <engine::world::World::createEntity()> (File Offset: 0x70):
+_ZN6engine5world5World12createEntityEv():
+/home/selecaoone/repositories/jumpy/engine/src/lib/world.cpp:14
+   0:	48 89 f8                                              	mov    rax,rdi
+_ZNKSt15__uniq_ptr_implIN6engine13entityManager13EntityManagerESt14default_deleteIS2_EE6_M_ptrEv():
+/opt/rh/devtoolset-9/root/usr/include/c++/9/bits/unique_ptr.h:154
+   3:	48 8b 4f 40                                           	mov    rcx,QWORD PTR [rdi+0x40]
+
+--------------------------------------------------------------------------------
+
+(source
+  (disassembly_section_label
+    (section_name))
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (file_offset
+      (hexadecimal))
+    (label_line
+      (label))
+    (source_location
+      (file_path)
+      (integer))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte)
+        (byte))
+      (instruction))
+    (label_line
+      (label))
+    (source_location
+      (file_path)
+      (integer))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte)
+        (byte)
+        (byte))
+      (instruction))))
+
+
+================================================================================
+Empty Assembly Instruction, Single Sections
+================================================================================
+
+Disassembly of section .interp:
+
+0000000000400238 <.interp>:
+  4004ff:	00 
+
+--------------------------------------------------------------------------------
+
+(source
+  (disassembly_section_label
+    (section_name))
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)))))
+
+
+================================================================================
+Empty Assembly Instruction, Multiple Sections
+================================================================================
+
+  0000000000400540 <__do_global_dtors_aux>:
+    4005ab:	00 00 00 00 00 
+
+  00000000004005b0 <frame_dummy>:
+    4005b0:	55                   	push   rbp
+
+--------------------------------------------------------------------------------
+
+(source
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte)
+        (byte)
+        (byte)
+        (byte))))
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte))
+      (instruction))))
+
+
+================================================================================
+Empty Assembly Instruction, Infixed With Other Instructions
+================================================================================
+
+Disassembly of section .debug_line:
+
+0000000000000000 <.debug_line>:
+
+  3d:	01 
+  3e:	01                   	.byte 0x1
+
+--------------------------------------------------------------------------------
+
+(source
+  (disassembly_section_label
+    (section_name))
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte))
+      (instruction))))
+
+
+
+================================================================================
+Empty Assembly Instruction, EOF
+================================================================================
+
+Disassembly of section .debug_line:
+
+0000000000000000 <.debug_line>:
+  60d1e6:	00 00                	add    BYTE PTR [rax],al
+  60d1e8:	00 00                	add 
+
+--------------------------------------------------------------------------------
+
+(source
+  (disassembly_section_label
+    (section_name))
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte))
+      (instruction))
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte))
+      (instruction))))
