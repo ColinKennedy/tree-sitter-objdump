@@ -314,4 +314,23 @@ Empty Assembly Instruction, Multiple Sections
 
 --------------------------------------------------------------------------------
 
-(source)
+(source
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (offset_line
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte)
+        (byte)
+        (byte)
+        (byte))))
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (offset_line
+      (address)
+      (machine_code_bytes
+        (byte))
+      (instruction))))

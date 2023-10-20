@@ -387,8 +387,25 @@
     "machine_code_bytes": {
       "type": "REPEAT1",
       "content": {
-        "type": "SYMBOL",
-        "name": "byte"
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "byte"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": " "
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
       }
     },
     "instruction": {

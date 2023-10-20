@@ -96,7 +96,7 @@ module.exports = grammar(
 
             hexadecimal: $ => /0[xh][0-9a-fA-F]+/,
             byte: $ => /[0-9a-fA-F]{2}/,
-            machine_code_bytes: $ => repeat1($.byte),
+            machine_code_bytes: $ => repeat1(seq($.byte, optional(" "))),
             instruction: $ => /[^\n<#]+/,
 
             address: $ => /[0-9a-fA-F]+/,
