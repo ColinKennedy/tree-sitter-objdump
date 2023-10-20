@@ -334,3 +334,46 @@ Empty Assembly Instruction, Multiple Sections
       (machine_code_bytes
         (byte))
       (instruction))))
+
+
+================================================================================
+Empty Assembly Instruction, Infixed With Other Instructions
+================================================================================
+
+Disassembly of section .debug_line:
+
+0000000000000000 <.debug_line>:
+
+  36:	4b 83 83 75 02 02 00 	rex.WXB add QWORD PTR [r11+0x20275],0x1
+  3d:	01 
+  3e:	01                   	.byte 0x1
+
+--------------------------------------------------------------------------------
+
+(source
+  (disassembly_section_label
+    (section_name))
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (offset_line
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte)
+        (byte)
+        (byte)
+        (byte)
+        (byte)
+        (byte))
+      (instruction))
+    (offset_line
+      (address)
+      (machine_code_bytes
+        (byte))
+      (instruction))
+    (offset_line
+      (address)
+      (machine_code_bytes
+        (byte))
+      (instruction))))
