@@ -4,7 +4,7 @@ This library parses objdump text using
 a light-weight grammar of the file.
 
 
-![tree-sitter-objdump-highlights](https://github.com/ColinKennedy/tree-sitter-objdump/assets/10103049/57ee586d-a021-483f-8dd5-1f090184fde6)
+![tree-sitter-objdump-highlights](https://github.com/ColinKennedy/tree-sitter-objdump/assets/10103049/184c535b-7a58-4726-82c1-d252e5174c15)
 
 
 ## Disclaimer
