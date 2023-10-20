@@ -63,18 +63,22 @@ module.exports = grammar(
                 choice(
                     /\n/,
                     optional(
-                        choice($._instruction_and_comment, $._instruction_and_location),
+                        seq(
+                            / \s+/,
+                            choice(
+                                $._instruction_and_comment,
+                                $._instruction_and_location
+                            ),
+                        )
                     )
                 ),
             ),
 
             _instruction_and_comment: $ => seq(
-                / \s+/,
                 $.instruction,
                 $.comment
             ),
             _instruction_and_location: $ => seq(
-                / \s+/,
                 $.instruction,
                 optional($.code_location),
                 optional($.file_offset),
