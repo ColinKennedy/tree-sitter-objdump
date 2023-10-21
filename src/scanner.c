@@ -14,10 +14,10 @@
 // You should have received a copy of the GNU General Public License
 // along with tree-sitter-objdump, see <http://www.gnu.org/licenses/>.
 
-#include <tree_sitter/parser.h>
+#include "tree_sitter/parser.h"
 
 #include <stdio.h>
-#include <cwctype>
+#include <wctype.h>
 
 enum TokenType {
     CODE_IDENTIFIER,
@@ -25,12 +25,8 @@ enum TokenType {
     ERROR_SENTINEL,
 };
 
-extern "C" {
-
-static bool is_hexadecimal_character(char character)
-{
-    switch (character)
-    {
+static bool is_hexadecimal_character(char character) {
+    switch (character) {
         case '0':
         case '1':
         case '2':
@@ -61,9 +57,7 @@ static bool is_hexadecimal_character(char character)
     }
 }
 
-
-static bool scan_code_identifier(TSLexer* lexer)
-{
+static bool scan_code_identifier(TSLexer *lexer) {
     bool has_text = false;
     unsigned int offset_counter = -1;
     bool has_hexadecimal_data = false;
@@ -72,8 +66,7 @@ static bool scan_code_identifier(TSLexer* lexer)
     char next_token_text[] = "(FileOffset:";
     unsigned int const size = (sizeof(next_token_text) / sizeof(char) - 1);
 
-    while (true)
-    {
+    while (true) {
         lexer->advance(lexer, false);
 
         if (lexer->lookahead == '\n' || lexer->eof(lexer)) {
@@ -82,20 +75,15 @@ static bool scan_code_identifier(TSLexer* lexer)
             return true;
         }
 
-        if (lexer->lookahead != '\n' && std::iswspace(lexer->lookahead))
-        {
+        if (lexer->lookahead != '\n' && iswspace(lexer->lookahead)) {
             // We could be in the token or just having exited it. Just keep trying
             continue;
         }
 
-        if (possibly_in_next_hexadecimal_token)
-        {
-            if (is_hexadecimal_character(lexer->lookahead))
-            {
+        if (possibly_in_next_hexadecimal_token) {
+            if (is_hexadecimal_character(lexer->lookahead)) {
                 has_hexadecimal_data = true;
-            }
-            else
-            {
+            } else {
                 // Reached the end of the (possibly) hexadecimal data
                 possibly_in_next_hexadecimal_token = false;
             }
@@ -103,20 +91,15 @@ static bool scan_code_identifier(TSLexer* lexer)
 
         has_text = true;
 
-        if (!possibly_in_next_file_offset_token)
-        {
-            if (lexer->lookahead == '(')
-            {
+        if (!possibly_in_next_file_offset_token) {
+            if (lexer->lookahead == '(') {
                 possibly_in_next_file_offset_token = true;
                 ++offset_counter;
 
                 continue;
             }
-        }
-        else if (lexer->lookahead == next_token_text[offset_counter])
-        {
-            if (offset_counter + 1 >= size)
-            {
+        } else if (lexer->lookahead == next_token_text[offset_counter]) {
+            if (offset_counter + 1 >= size) {
                 lexer->result_symbol = CODE_IDENTIFIER;
 
                 return true;
@@ -125,22 +108,18 @@ static bool scan_code_identifier(TSLexer* lexer)
             ++offset_counter;
 
             continue;
-        }
-        else
-        {
+        } else {
             possibly_in_next_file_offset_token = false;
 
             continue;
         }
 
-        switch (lexer->lookahead)
-        {
+        switch (lexer->lookahead) {
             case '\n':
                 // The end of the token wasn't found so it cannot be a code identifier
                 return false;
             case '>':
-                if (!has_hexadecimal_data && !possibly_in_next_hexadecimal_token)
-                {
+                if (!has_hexadecimal_data && !possibly_in_next_hexadecimal_token) {
                     // We might have reached the end. Or it could be some kind of
                     // C++ operator>>() signature. Not sure which, just yet
                     //
@@ -163,9 +142,7 @@ static bool scan_code_identifier(TSLexer* lexer)
     return has_text;
 }
 
-
-static bool scan_whitespace_no_newline(TSLexer* lexer)
-{
+static bool scan_whitespace_no_newline(TSLexer *lexer) {
     // TODO: This line may not actually be needed in practice. Consider removing
     //
     // This line is special. It means "don't allow lexer->advance to change the
@@ -176,15 +153,12 @@ static bool scan_whitespace_no_newline(TSLexer* lexer)
 
     bool has_text = false;
 
-    while (true)
-    {
-        if (lexer->eof(lexer))
-        {
+    while (true) {
+        if (lexer->eof(lexer)) {
             return has_text;
         }
 
-        switch (lexer->lookahead)
-        {
+        switch (lexer->lookahead) {
             case '\n':
                 return true;
             case ' ':
@@ -202,50 +176,26 @@ static bool scan_whitespace_no_newline(TSLexer* lexer)
     }
 }
 
+void *tree_sitter_objdump_external_scanner_create() { return NULL; }
 
-void* tree_sitter_objdump_external_scanner_create() {}
-
-
-void tree_sitter_objdump_external_scanner_deserialize(
-  void *payload,
-  const char *buffer,
-  unsigned length
-)
-{
-}
-
+void tree_sitter_objdump_external_scanner_deserialize(void *payload, const char *buffer, unsigned length) {}
 
 void tree_sitter_objdump_external_scanner_destroy(void *payload) {}
 
-
-bool tree_sitter_objdump_external_scanner_scan(
-  void *payload,
-  TSLexer *lexer,
-  const bool *valid_symbols
-)
-{
-    if (valid_symbols[ERROR_SENTINEL])
-    {
-        // TODO : Add reasonable fallback behavior here, maybe.
+bool tree_sitter_objdump_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
+    if (valid_symbols[ERROR_SENTINEL]) {
+        return false;
     }
 
-    if (valid_symbols[WHITESPACE_NO_NEWLINE])
-    {
+    if (valid_symbols[WHITESPACE_NO_NEWLINE]) {
         return scan_whitespace_no_newline(lexer);
     }
 
-    if (valid_symbols[CODE_IDENTIFIER])
-    {
+    if (valid_symbols[CODE_IDENTIFIER]) {
         return scan_code_identifier(lexer);
     }
 
     return false;
 }
 
-
-unsigned tree_sitter_objdump_external_scanner_serialize(void *payload, char *buffer)
-{
-    return 0;
-}
-
-}
+unsigned tree_sitter_objdump_external_scanner_serialize(void *payload, char *buffer) { return 0; }
