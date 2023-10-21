@@ -24,3 +24,6 @@ _ZNKSt15__uniq_ptr_implIN6engine13entityManager13EntityManagerESt14default_delet
    #    ^ constant
    #                                                            ^ text
    #                                                                                                                    ^ field
+
+   23:	00 00                                                 	(bad)
+   #                                                            ^ text.warning

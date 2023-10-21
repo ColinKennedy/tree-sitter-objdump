@@ -187,6 +187,10 @@
           "named": true
         },
         {
+          "type": "bad_instruction",
+          "named": true
+        },
+        {
           "type": "code_location",
           "named": true
         },
@@ -313,6 +317,10 @@
   },
   {
     "type": "address",
+    "named": true
+  },
+  {
+    "type": "bad_instruction",
     "named": true
   },
   {

@@ -210,6 +210,10 @@
                     {
                       "type": "SYMBOL",
                       "name": "_instruction_and_location"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "bad_instruction"
                     }
                   ]
                 }
@@ -272,6 +276,10 @@
     "instruction": {
       "type": "PATTERN",
       "value": "[^\\n#<]+"
+    },
+    "bad_instruction": {
+      "type": "STRING",
+      "value": "(bad)"
     },
     "comment": {
       "type": "SEQ",

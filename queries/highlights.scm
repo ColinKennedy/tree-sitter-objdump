@@ -20,6 +20,7 @@
 
 (file_path) @string.special
 (instruction) @function
+(bad_instruction) @text.warning
 (label) @label
 
 ["<" ">"] @punctuation.special

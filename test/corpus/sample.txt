@@ -214,3 +214,26 @@ Instruction With + Sign
         (hexadecimal))
       (file_offset
         (hexadecimal)))))
+
+
+================================================================================
+Bad Instruction Parse
+================================================================================
+
+0000000000490640 <blah>:
+  490640:	00 00 00 00          	(bad)
+
+--------------------------------------------------------------------------------
+
+(source
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte)
+        (byte)
+        (byte))
+      (bad_instruction))))

@@ -73,7 +73,11 @@ module.exports = grammar(
                     $._whitespace_no_newline,
                     seq(
                         /\s*/,
-                        choice($._instruction_and_comment, $._instruction_and_location),
+                        choice(
+                            $._instruction_and_comment,
+                            $._instruction_and_location,
+                            $.bad_instruction,
+                        ),
                     )
                 ),
             ),
@@ -91,6 +95,7 @@ module.exports = grammar(
                 )
             ),
             instruction: $ => /[^\n#<]+/,
+            bad_instruction: $ => "(bad)",
 
             comment: $ => seq(
                 "#",
