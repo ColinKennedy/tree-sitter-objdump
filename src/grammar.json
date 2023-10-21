@@ -451,8 +451,13 @@
           "value": "Disassembly of section "
         },
         {
-          "type": "SYMBOL",
-          "name": "section_name"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_section_name"
+          },
+          "named": true,
+          "value": "identifier"
         },
         {
           "type": "STRING",
@@ -476,7 +481,7 @@
       "type": "PATTERN",
       "value": "[^\\n]+"
     },
-    "section_name": {
+    "_section_name": {
       "type": "PATTERN",
       "value": "\\.[^:]+"
     }

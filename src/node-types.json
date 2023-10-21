@@ -89,7 +89,7 @@
       "required": true,
       "types": [
         {
-          "type": "section_name",
+          "type": "identifier",
           "named": true
         }
       ]
@@ -357,10 +357,6 @@
   },
   {
     "type": "section_address",
-    "named": true
-  },
-  {
-    "type": "section_name",
     "named": true
   }
 ]

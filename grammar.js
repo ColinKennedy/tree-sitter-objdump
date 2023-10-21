@@ -121,7 +121,7 @@ module.exports = grammar(
 
             disassembly_section_label: $ => seq(
                 "Disassembly of section ",
-                $.section_name,
+                alias($._section_name, $.identifier),
                 ":",
             ),
 
@@ -133,7 +133,7 @@ module.exports = grammar(
             _label_identifier: $ => /[A-Za-z.@_][A-Za-z0-9.@_$-\(\)]*/,  // Test this, later
             identifier: $ => /[^\n]+/,
 
-            section_name: $ => /\.[^:]+/,
+            _section_name: $ => /\.[^:]+/,
         }
     }
 )

@@ -40,7 +40,7 @@ enum {
   sym_file_path = 21,
   sym__label_identifier = 22,
   sym_identifier = 23,
-  sym_section_name = 24,
+  sym__section_name = 24,
   sym_code_identifier = 25,
   sym_instruction = 26,
   sym__whitespace_no_newline = 27,
@@ -92,7 +92,7 @@ static const char * const ts_symbol_names[] = {
   [sym_file_path] = "file_path",
   [sym__label_identifier] = "label",
   [sym_identifier] = "identifier",
-  [sym_section_name] = "section_name",
+  [sym__section_name] = "identifier",
   [sym_code_identifier] = "identifier",
   [sym_instruction] = "instruction",
   [sym__whitespace_no_newline] = "_whitespace_no_newline",
@@ -144,7 +144,7 @@ static const TSSymbol ts_symbol_map[] = {
   [sym_file_path] = sym_file_path,
   [sym__label_identifier] = sym__label_identifier,
   [sym_identifier] = sym_identifier,
-  [sym_section_name] = sym_section_name,
+  [sym__section_name] = sym_identifier,
   [sym_code_identifier] = sym_identifier,
   [sym_instruction] = sym_instruction,
   [sym__whitespace_no_newline] = sym__whitespace_no_newline,
@@ -268,7 +268,7 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = true,
     .named = true,
   },
-  [sym_section_name] = {
+  [sym__section_name] = {
     .visible = true,
     .named = true,
   },
@@ -1137,7 +1137,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead != '\n') ADVANCE(116);
       END_STATE();
     case 117:
-      ACCEPT_TOKEN(sym_section_name);
+      ACCEPT_TOKEN(sym__section_name);
       if (lookahead != 0 &&
           lookahead != ':') ADVANCE(117);
       END_STATE();
@@ -1262,7 +1262,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [anon_sym_Offset_COLON] = ACTIONS(1),
     [anon_sym_Disassemblyofsection] = ACTIONS(1),
     [sym_integer] = ACTIONS(1),
-    [sym_section_name] = ACTIONS(1),
+    [sym__section_name] = ACTIONS(1),
     [sym_code_identifier] = ACTIONS(1),
     [sym_instruction] = ACTIONS(1),
     [sym__whitespace_no_newline] = ACTIONS(1),
@@ -1723,7 +1723,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_GT,
   [575] = 1,
     ACTIONS(227), 1,
-      sym_section_name,
+      sym__section_name,
 };
 
 static const uint32_t ts_small_parse_table_map[] = {

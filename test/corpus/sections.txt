@@ -11,7 +11,7 @@ Disassembly of section .text:
 
 (source
   (disassembly_section_label
-    (section_name))
+    (identifier))
   (disassembly_section
     (section_address)
     (identifier)
@@ -246,7 +246,7 @@ _ZNKSt15__uniq_ptr_implIN6engine13entityManager13EntityManagerESt14default_delet
 
 (source
   (disassembly_section_label
-    (section_name))
+    (identifier))
   (disassembly_section
     (section_address)
     (identifier)
@@ -292,7 +292,7 @@ Disassembly of section .interp:
 
 (source
   (disassembly_section_label
-    (section_name))
+    (identifier))
   (disassembly_section
     (section_address)
     (identifier)
@@ -351,7 +351,7 @@ Disassembly of section .debug_line:
 
 (source
   (disassembly_section_label
-    (section_name))
+    (identifier))
   (disassembly_section
     (section_address)
     (identifier)
@@ -381,7 +381,7 @@ Disassembly of section .debug_line:
 
 (source
   (disassembly_section_label
-    (section_name))
+    (identifier))
   (disassembly_section
     (section_address)
     (identifier)
