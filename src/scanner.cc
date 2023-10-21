@@ -7,6 +7,7 @@ enum TokenType {
     CODE_IDENTIFIER,
     ASSEMBLY_INSTRUCTION,
     WHITESPACE_NO_NEWLINE,
+    ERROR_SENTINEL,
 };
 
 extern "C" {
@@ -45,89 +46,42 @@ bool is_hexadecimal_character(char character)
     }
 }
 
-void* tree_sitter_objdump_external_scanner_create() {}
-
-
-void tree_sitter_objdump_external_scanner_deserialize(
-  void *payload,
-  const char *buffer,
-  unsigned length
-)
-{
-}
-
-
-void tree_sitter_objdump_external_scanner_destroy(void *payload) {}
-
-
-bool tree_sitter_objdump_external_scanner_scan(
-  void *payload,
-  TSLexer *lexer,
-  const bool *valid_symbols
-)
+static bool tree_sitter_objdump_detail_scan_assembly_instruction(TSLexer* lexer)
 {
     bool has_text = false;
 
-    if (valid_symbols[ASSEMBLY_INSTRUCTION])
+    while (true)
     {
-        while (true)
+        if (lexer->eof(lexer))
         {
-            if (lexer->eof(lexer))
-            {
-                return has_text;
-            }
-
-            switch (lexer->lookahead)
-            {
-                case '\n':
-                case '<':
-                case '#':
-                    lexer->result_symbol = ASSEMBLY_INSTRUCTION;
-                    lexer->mark_end(lexer);
-
-                    return has_text;
-                case ' ':
-                case '\t':
-                    break;
-                default:
-                    has_text = true;
-            };
-
-            lexer->advance(lexer, false);
+            return has_text;
         }
 
-        return has_text;
-    }
-
-    if (valid_symbols[WHITESPACE_NO_NEWLINE])
-    {
-        while (true)
+        switch (lexer->lookahead)
         {
-            if (lexer->eof(lexer))
-            {
+            case '\n':
+            case '<':
+            case '#':
+                lexer->result_symbol = ASSEMBLY_INSTRUCTION;
+                lexer->mark_end(lexer);
+
                 return has_text;
-            }
+            case ' ':
+            case '\t':
+                break;
+            default:
+                has_text = true;
+        };
 
-            switch (lexer->lookahead)
-            {
-                case '\n':
-                    return true;
-                case ' ':
-                case '\t':
-                    has_text = true;
-                    lexer->result_symbol = WHITESPACE_NO_NEWLINE;
-                    lexer->mark_end(lexer);
-
-                    break;
-                default:
-                    return false;
-            };
-
-            lexer->advance(lexer, false);
-        }
+        lexer->advance(lexer, false);
     }
 
+    return has_text;
+}
 
+static bool tree_sitter_objdump_detail_scan_code_identifier(TSLexer* lexer)
+{
+    bool has_text = false;
     unsigned int offset_counter = -1;
     bool has_hexadecimal_data = false;
     bool possibly_in_next_hexadecimal_token = false;
@@ -224,6 +178,85 @@ bool tree_sitter_objdump_external_scanner_scan(
     }
 
     return has_text;
+}
+
+
+static bool tree_sitter_objdump_detail_scan_whitespace_no_newline(TSLexer* lexer)
+{
+    return false;
+
+    lexer->mark_end(lexer);
+    bool has_text = false;
+
+    while (true)
+    {
+        if (lexer->eof(lexer))
+        {
+            return has_text;
+        }
+
+        switch (lexer->lookahead)
+        {
+            case '\n':
+                return true;
+            case ' ':
+            case '\t':
+                has_text = true;
+                lexer->result_symbol = WHITESPACE_NO_NEWLINE;
+                lexer->mark_end(lexer);
+
+                break;
+            default:
+                return false;
+        };
+
+        lexer->advance(lexer, false);
+    }
+}
+
+
+void* tree_sitter_objdump_external_scanner_create() {}
+
+
+void tree_sitter_objdump_external_scanner_deserialize(
+  void *payload,
+  const char *buffer,
+  unsigned length
+)
+{
+}
+
+
+void tree_sitter_objdump_external_scanner_destroy(void *payload) {}
+
+
+bool tree_sitter_objdump_external_scanner_scan(
+  void *payload,
+  TSLexer *lexer,
+  const bool *valid_symbols
+)
+{
+    if (valid_symbols[ERROR_SENTINEL])
+    {
+        // TODO : Add reasonable fallback behavior here, maybe.
+    }
+
+    if (valid_symbols[ASSEMBLY_INSTRUCTION])
+    {
+        return tree_sitter_objdump_detail_scan_assembly_instruction(lexer);
+    }
+
+    if (valid_symbols[WHITESPACE_NO_NEWLINE])
+    {
+        return tree_sitter_objdump_detail_scan_whitespace_no_newline(lexer);
+    }
+
+    if (valid_symbols[CODE_IDENTIFIER])
+    {
+        return tree_sitter_objdump_detail_scan_code_identifier(lexer);
+    }
+
+    return false;
 }
 
 

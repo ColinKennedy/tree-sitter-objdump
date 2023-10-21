@@ -27,6 +27,7 @@ module.exports = grammar(
             $.code_identifier,
             $.instruction,
             $._whitespace_no_newline,
+            $._error_sentinel,
         ],
 
         rules: {
@@ -80,7 +81,7 @@ module.exports = grammar(
 
             _instruction_and_comment: $ => seq(
                 $.instruction,
-                $.comment
+                $.comment,
             ),
             _instruction_and_location: $ => prec.left(
                 2,
