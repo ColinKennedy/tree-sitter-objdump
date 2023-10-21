@@ -5,13 +5,13 @@
 
 enum TokenType {
     CODE_IDENTIFIER,
-    ASSEMBLY_INSTRUCTION,
     WHITESPACE_NO_NEWLINE,
+    ERROR_SENTINEL,
 };
 
 extern "C" {
 
-bool is_hexadecimal_character(char character)
+static bool is_hexadecimal_character(char character)
 {
     switch (character)
     {
@@ -45,89 +45,10 @@ bool is_hexadecimal_character(char character)
     }
 }
 
-void* tree_sitter_objdump_external_scanner_create() {}
 
-
-void tree_sitter_objdump_external_scanner_deserialize(
-  void *payload,
-  const char *buffer,
-  unsigned length
-)
-{
-}
-
-
-void tree_sitter_objdump_external_scanner_destroy(void *payload) {}
-
-
-bool tree_sitter_objdump_external_scanner_scan(
-  void *payload,
-  TSLexer *lexer,
-  const bool *valid_symbols
-)
+static bool scan_code_identifier(TSLexer* lexer)
 {
     bool has_text = false;
-
-    if (valid_symbols[ASSEMBLY_INSTRUCTION])
-    {
-        while (true)
-        {
-            if (lexer->eof(lexer))
-            {
-                return has_text;
-            }
-
-            switch (lexer->lookahead)
-            {
-                case '\n':
-                case '<':
-                case '#':
-                    lexer->result_symbol = ASSEMBLY_INSTRUCTION;
-                    lexer->mark_end(lexer);
-
-                    return has_text;
-                case ' ':
-                case '\t':
-                    break;
-                default:
-                    has_text = true;
-            };
-
-            lexer->advance(lexer, false);
-        }
-
-        return has_text;
-    }
-
-    if (valid_symbols[WHITESPACE_NO_NEWLINE])
-    {
-        while (true)
-        {
-            if (lexer->eof(lexer))
-            {
-                return has_text;
-            }
-
-            switch (lexer->lookahead)
-            {
-                case '\n':
-                    return true;
-                case ' ':
-                case '\t':
-                    has_text = true;
-                    lexer->result_symbol = WHITESPACE_NO_NEWLINE;
-                    lexer->mark_end(lexer);
-
-                    break;
-                default:
-                    return false;
-            };
-
-            lexer->advance(lexer, false);
-        }
-    }
-
-
     unsigned int offset_counter = -1;
     bool has_hexadecimal_data = false;
     bool possibly_in_next_hexadecimal_token = false;
@@ -224,6 +145,85 @@ bool tree_sitter_objdump_external_scanner_scan(
     }
 
     return has_text;
+}
+
+
+static bool scan_whitespace_no_newline(TSLexer* lexer)
+{
+    // TODO: This line may not actually be needed in practice. Consider removing
+    //
+    // This line is special. It means "don't allow lexer->advance to change the
+    // width of the found token automatically anymore". From here on out, because
+    // mark_end was called, we have control over the size of a matched token.
+    //
+    lexer->mark_end(lexer);
+
+    bool has_text = false;
+
+    while (true)
+    {
+        if (lexer->eof(lexer))
+        {
+            return has_text;
+        }
+
+        switch (lexer->lookahead)
+        {
+            case '\n':
+                return true;
+            case ' ':
+            case '\t':
+                has_text = true;
+                lexer->result_symbol = WHITESPACE_NO_NEWLINE;
+                lexer->mark_end(lexer);
+
+                break;
+            default:
+                return false;
+        };
+
+        lexer->advance(lexer, false);
+    }
+}
+
+
+void* tree_sitter_objdump_external_scanner_create() {}
+
+
+void tree_sitter_objdump_external_scanner_deserialize(
+  void *payload,
+  const char *buffer,
+  unsigned length
+)
+{
+}
+
+
+void tree_sitter_objdump_external_scanner_destroy(void *payload) {}
+
+
+bool tree_sitter_objdump_external_scanner_scan(
+  void *payload,
+  TSLexer *lexer,
+  const bool *valid_symbols
+)
+{
+    if (valid_symbols[ERROR_SENTINEL])
+    {
+        // TODO : Add reasonable fallback behavior here, maybe.
+    }
+
+    if (valid_symbols[WHITESPACE_NO_NEWLINE])
+    {
+        return scan_whitespace_no_newline(lexer);
+    }
+
+    if (valid_symbols[CODE_IDENTIFIER])
+    {
+        return scan_code_identifier(lexer);
+    }
+
+    return false;
 }
 
 

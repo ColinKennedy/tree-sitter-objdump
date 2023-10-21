@@ -397,3 +397,30 @@ Disassembly of section .debug_line:
         (byte)
         (byte))
       (instruction))))
+
+
+================================================================================
+Disassembly Section With _ Prefix
+================================================================================
+
+Disassembly of section __libc_freeres_fn:
+
+0000000000490640 <__libc_freeres_fn>:
+  490640:	f3 0f 1e fa          	repz nop edx
+
+--------------------------------------------------------------------------------
+
+(source
+  (disassembly_section_label
+    (identifier))
+  (disassembly_section
+    (section_address)
+    (identifier)
+    (memory_offset
+      (address)
+      (machine_code_bytes
+        (byte)
+        (byte)
+        (byte)
+        (byte))
+      (instruction))))
