@@ -12,7 +12,7 @@ enum TokenType {
 
 extern "C" {
 
-bool is_hexadecimal_character(char character)
+static bool is_hexadecimal_character(char character)
 {
     switch (character)
     {
@@ -46,7 +46,7 @@ bool is_hexadecimal_character(char character)
     }
 }
 
-static bool tree_sitter_objdump_detail_scan_assembly_instruction(TSLexer* lexer)
+static bool scan_assembly_instruction(TSLexer* lexer)
 {
     bool has_text = false;
 
@@ -79,7 +79,7 @@ static bool tree_sitter_objdump_detail_scan_assembly_instruction(TSLexer* lexer)
     return has_text;
 }
 
-static bool tree_sitter_objdump_detail_scan_code_identifier(TSLexer* lexer)
+static bool scan_code_identifier(TSLexer* lexer)
 {
     bool has_text = false;
     unsigned int offset_counter = -1;
@@ -181,7 +181,7 @@ static bool tree_sitter_objdump_detail_scan_code_identifier(TSLexer* lexer)
 }
 
 
-static bool tree_sitter_objdump_detail_scan_whitespace_no_newline(TSLexer* lexer)
+static bool scan_whitespace_no_newline(TSLexer* lexer)
 {
     // TODO: This line may not actually be needed in practice. Consider removing
     //
@@ -248,17 +248,17 @@ bool tree_sitter_objdump_external_scanner_scan(
 
     if (valid_symbols[ASSEMBLY_INSTRUCTION])
     {
-        return tree_sitter_objdump_detail_scan_assembly_instruction(lexer);
+        return scan_assembly_instruction(lexer);
     }
 
     if (valid_symbols[WHITESPACE_NO_NEWLINE])
     {
-        return tree_sitter_objdump_detail_scan_whitespace_no_newline(lexer);
+        return scan_whitespace_no_newline(lexer);
     }
 
     if (valid_symbols[CODE_IDENTIFIER])
     {
-        return tree_sitter_objdump_detail_scan_code_identifier(lexer);
+        return scan_code_identifier(lexer);
     }
 
     return false;
