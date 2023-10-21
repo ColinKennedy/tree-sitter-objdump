@@ -183,9 +183,14 @@ static bool tree_sitter_objdump_detail_scan_code_identifier(TSLexer* lexer)
 
 static bool tree_sitter_objdump_detail_scan_whitespace_no_newline(TSLexer* lexer)
 {
-    return false;
-
+    // TODO: This line may not actually be needed in practice. Consider removing
+    //
+    // This line is special. It means "don't allow lexer->advance to change the
+    // width of the found token automatically anymore". From here on out, because
+    // mark_end was called, we have control over the size of a matched token.
+    //
     lexer->mark_end(lexer);
+
     bool has_text = false;
 
     while (true)
