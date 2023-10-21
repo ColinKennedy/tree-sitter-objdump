@@ -25,8 +25,8 @@ module.exports = grammar(
 
         externals: $ => [
             $.code_identifier,
-            $.instruction,
             $._whitespace_no_newline,
+            $._error_sentinel,
         ],
 
         rules: {
@@ -72,7 +72,7 @@ module.exports = grammar(
                 choice(
                     $._whitespace_no_newline,
                     seq(
-                        /[^\n]/,
+                        /\s*/,
                         choice($._instruction_and_comment, $._instruction_and_location),
                     )
                 ),
@@ -80,7 +80,7 @@ module.exports = grammar(
 
             _instruction_and_comment: $ => seq(
                 $.instruction,
-                $.comment
+                $.comment,
             ),
             _instruction_and_location: $ => prec.left(
                 2,
@@ -90,6 +90,7 @@ module.exports = grammar(
                     optional($.file_offset),
                 )
             ),
+            instruction: $ => /[^\n#<]+/,
 
             comment: $ => seq(
                 "#",
@@ -133,7 +134,7 @@ module.exports = grammar(
             _label_identifier: $ => /[A-Za-z.@_][A-Za-z0-9.@_$-\(\)]*/,  // Test this, later
             identifier: $ => /[^\n]+/,
 
-            _section_name: $ => /\.[^:]+/,
+            _section_name: $ => /[^:]+/,
         }
     }
 )
