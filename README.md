@@ -38,7 +38,7 @@ All tests should pass.
 
 
 ### Actual Objdump Files
-The best way to test tree-sitter-usd is to parse Objdump files in-action.
+The best way to test tree-sitter-objdump is to parse Objdump files in-action.
 
 A quick way to do that is to run `check.sh`
 

@@ -1,7 +1,7 @@
 {
     "author": "Colin Kennedy",
     "bugs": {
-        "url": "https://github.com/ColinKennedy/tree-sitter-usd/issues"
+        "url": "https://github.com/ColinKennedy/tree-sitter-objdump/issues"
     },
     "dependencies": {
         "nan": "^2.12.1"
