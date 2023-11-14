@@ -15,7 +15,7 @@ A clear and concise description of what the bug is.
 Given this Objdump file
 
 <!-- Insert a Objdump file here or link to a GitHub gist example -->
-`tree-sitter parse /the/file.usda`
+`tree-sitter parse /the/file.objdump`
 
 ### Expected Parse
 <!-- Insert the text output that you expected here -->
