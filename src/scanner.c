@@ -16,14 +16,20 @@
 
 #include "tree_sitter/parser.h"
 
+#include <ctype.h>
 #include <stdio.h>
 #include <wctype.h>
 
 enum TokenType {
     CODE_IDENTIFIER,
+    RAW_DATA,
     WHITESPACE_NO_NEWLINE,
     ERROR_SENTINEL,
 };
+
+static inline void advance(TSLexer *lexer) { lexer->advance(lexer, false); }
+
+static inline void skip(TSLexer *lexer) { lexer->advance(lexer, true); }
 
 static bool is_hexadecimal_character(char character) {
     switch (character) {
@@ -67,7 +73,7 @@ static bool scan_code_identifier(TSLexer *lexer) {
     unsigned int const size = (sizeof(next_token_text) / sizeof(char) - 1);
 
     while (true) {
-        lexer->advance(lexer, false);
+        advance(lexer);
 
         if (lexer->lookahead == '\n' || lexer->eof(lexer)) {
             lexer->result_symbol = CODE_IDENTIFIER;
@@ -150,6 +156,7 @@ static bool scan_whitespace_no_newline(TSLexer *lexer) {
     // mark_end was called, we have control over the size of a matched token.
     //
     lexer->mark_end(lexer);
+    lexer->result_symbol = WHITESPACE_NO_NEWLINE;
 
     bool has_text = false;
 
@@ -164,7 +171,6 @@ static bool scan_whitespace_no_newline(TSLexer *lexer) {
             case ' ':
             case '\t':
                 has_text = true;
-                lexer->result_symbol = WHITESPACE_NO_NEWLINE;
                 lexer->mark_end(lexer);
 
                 break;
@@ -172,7 +178,7 @@ static bool scan_whitespace_no_newline(TSLexer *lexer) {
                 return false;
         };
 
-        lexer->advance(lexer, false);
+        advance(lexer);
     }
 }
 
@@ -187,7 +193,60 @@ bool tree_sitter_objdump_external_scanner_scan(void *payload, TSLexer *lexer, co
         return false;
     }
 
-    if (valid_symbols[WHITESPACE_NO_NEWLINE]) {
+    bool advanced_once = false;
+
+    if (valid_symbols[RAW_DATA]) {
+        while (iswspace(lexer->lookahead) && lexer->lookahead != '\n') {
+            skip(lexer);
+        }
+
+        bool found_dot = false;
+        uint8_t raw_data_count = 0;
+
+        // consume till newline, require at least one dot and require it to occur within the first 4 characters, and
+        // don't parse any 0x's.
+        while (lexer->lookahead != '\n') {
+            if (lexer->lookahead == '.' && raw_data_count < 4) {
+                found_dot = true;
+            }
+
+            if (lexer->lookahead == '0') {
+                advance(lexer);
+                advanced_once = true;
+                raw_data_count++;
+                if (lexer->lookahead == 'x') {
+                    return false;
+                }
+            }
+
+            // disallow two alphanumerics in a row
+            if (isalnum(lexer->lookahead)) {
+                advance(lexer);
+                advanced_once = true;
+                raw_data_count++;
+                if (isalnum(lexer->lookahead)) {
+                    return false;
+                }
+            }
+
+            advance(lexer);
+            if (!iswspace(lexer->lookahead)) {
+                advanced_once = true;
+            }
+            raw_data_count++;
+        }
+
+        if (lexer->lookahead == '\n' && found_dot && raw_data_count > 1) {
+            lexer->result_symbol = RAW_DATA;
+            return true;
+        }
+
+        if (raw_data_count > 4 && !found_dot) {
+            return false;
+        }
+    }
+
+    if (valid_symbols[WHITESPACE_NO_NEWLINE] && !advanced_once) {
         return scan_whitespace_no_newline(lexer);
     }
 

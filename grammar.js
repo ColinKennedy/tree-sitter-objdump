@@ -25,6 +25,7 @@ module.exports = grammar(
 
         externals: $ => [
             $.code_identifier,
+            $.raw_data,
             $._whitespace_no_newline,
             $._error_sentinel,
         ],
@@ -72,6 +73,7 @@ module.exports = grammar(
                 $.machine_code_bytes,
                 choice(
                     $._whitespace_no_newline,
+                    $.raw_data,
                     seq(
                         /\s*/,
                         choice(
