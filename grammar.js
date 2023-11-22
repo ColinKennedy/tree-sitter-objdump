@@ -25,6 +25,7 @@ module.exports = grammar(
 
         externals: $ => [
             $.code_identifier,
+            $.raw_data,
             $._whitespace_no_newline,
             $._error_sentinel,
         ],
@@ -44,6 +45,7 @@ module.exports = grammar(
                 $.label_line,
                 $.memory_offset,
                 $.source_location,
+                '...',
             ),
 
             header: $ => seq($.file_path, ":", "file", "format", $.identifier),
@@ -71,6 +73,7 @@ module.exports = grammar(
                 $.machine_code_bytes,
                 choice(
                     $._whitespace_no_newline,
+                    $.raw_data,
                     seq(
                         /\s*/,
                         choice(
@@ -94,18 +97,28 @@ module.exports = grammar(
                     optional($.file_offset),
                 )
             ),
-            instruction: $ => /[^\n#<]+/,
-            bad_instruction: $ => "(bad)",
+            instruction: _ => /([^\n#;<]|#-?\d+)+/,
+            bad_instruction: _ => "(bad)",
 
             comment: $ => seq(
-                "#",
+                choice("#", ';'),
                 choice(
                     $._comment_with_address,
                     $._comment_with_label,
                 ),
             ),
 
-            _comment_with_label: $ => seq($.address, $.code_location, optional($.file_offset)),
+            _comment_with_label: $ => choice(
+                seq(
+                  '(',
+                  optional(seq(alias(/[^\d,][^,]+/, $.instruction), ',')),
+                  $.address,
+                  $.code_location,
+                  optional($.file_offset),
+                  ')'
+                ),
+                seq($.address, $.code_location, optional($.file_offset)),
+            ),
             _comment_with_address: $ => $.hexadecimal,
 
             code_location: $ => seq(
@@ -117,11 +130,11 @@ module.exports = grammar(
 
             label_line: $ => seq(alias($._label_identifier, $.label), ":"),
 
-            hexadecimal: $ => /0[xh][0-9a-fA-F]+/,
-            byte: $ => /[0-9a-fA-F]{2}/,
+            hexadecimal: _ => /0[xh][0-9a-fA-F]+/,
+            byte: _ => /[0-9a-fA-F]{2}|[0-9a-fA-F]{4}|[0-9a-fA-F]{8}/,
             machine_code_bytes: $ => space_separated1($.byte),
 
-            address: $ => /[0-9a-fA-F]+/,
+            address: _ => /[0-9a-fA-F]+/,
 
             file_offset: $ => seq("(", "File", "Offset:", $.hexadecimal, ")"),
 
@@ -131,15 +144,15 @@ module.exports = grammar(
                 ":",
             ),
 
-            integer: $ => /\d+/,
+            integer: _ => /\d+/,
 
             // TODO: Support windows paths, later. Also make sure Linux paths work
-            file_path: $ => /[\/\w\-\.\+]+/,
+            file_path: _ => /[\/\w\-\.\+]+/,
 
-            _label_identifier: $ => /[A-Za-z.@_][A-Za-z0-9.@_$-\(\)]*/,  // Test this, later
-            identifier: $ => /[^\n]+/,
+            _label_identifier: _ => /[A-Za-z.@_][A-Za-z0-9.@_$-\(\)]*/,  // Test this, later
+            identifier: _ => /[^\n]+/,
 
-            _section_name: $ => /[^:]+/,
+            _section_name: _ => /[^:]+/,
         }
     }
 )

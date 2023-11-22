@@ -41,6 +41,10 @@
         {
           "type": "hexadecimal",
           "named": true
+        },
+        {
+          "type": "instruction",
+          "named": true
         }
       ]
     }
@@ -209,6 +213,10 @@
         {
           "type": "machine_code_bytes",
           "named": true
+        },
+        {
+          "type": "raw_data",
+          "named": true
         }
       ]
     }
@@ -292,7 +300,19 @@
     "named": false
   },
   {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": "...",
+    "named": false
+  },
+  {
     "type": ":",
+    "named": false
+  },
+  {
+    "type": ";",
     "named": false
   },
   {
@@ -361,6 +381,10 @@
   },
   {
     "type": "label",
+    "named": true
+  },
+  {
+    "type": "raw_data",
     "named": true
   },
   {
